@@ -1,0 +1,215 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Material Design</title>
+    <script src="/jquery/jquery.js"></script>
+    <script src="/mdl/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/mdl/material.min.css"
+          th:href="@{/mdl/material.min.css}">
+
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/style.css"
+          th:href="@{/resources/css/style.css}"/>
+
+
+</head>
+<script>
+    $(document).ready(function(){
+        alert("jquery on");
+    });
+
+</script>
+<body>
+
+
+
+<div class="mdl-layout wrapper change-color">
+    <div class="mdl-grid">
+
+          <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
+
+
+        <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
+        <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
+
+        <h1>Form</h1>
+        <form action="#" th:action="@{/index}" th:object="${email}" method="post">
+            <p>Id: <input type="text" th:field="*{email}" /></p>
+            <p>Message: <input type="text" th:field="*{content}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+        <h1>Result</h1>
+        <p th:text="'id: ' + ${email.email}" />
+        <p th:text="'content: ' + ${email.content}" />
+        <a href="/greeting">Submit another message</a>
+
+
+        <!--
+        <div class="mdl-cell mdl-cell--6-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+        <div class="mdl-cell mdl-cell--4-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/email_logo.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>Contact Me</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/linkedin_logo.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my profile</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-card content-only center-child transparent">
+            <div class="mdl-card__media">
+                <img class="img-responsive" src="/resources/images/linkedin_logo.png">
+            </div>
+            <div class="mdl-card__supporting-text center-child">
+                <p>View my profile</p>
+            </div>
+            <div class="mdl-card__actions center-child">
+                <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
+            </div>
+        </div>
+
+
+
+        <!--4 booxes-->
+<!--
+        <div class="mdl-cell mdl-cell--3-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--3-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--3-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--3-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child">
+                    <div class="mdl-card__media">
+                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
+                    </div>
+                    <div class="mdl-card__supporting-text center-child">
+                        <p>View my public repo at Github</p>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+-->
+    </div>
+</div>
+</body>
+</html>

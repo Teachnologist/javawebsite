@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.remove-padding{
+    margin: 0;
+    padding:0;
+}
+
+.wrapper {
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.center-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-child{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+}
+
+.right-child{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.center-self{
+    margin: 0 auto;
+}
+
+
+
+
+
+.content-grid{
+    width: 100%;
+}
+
+.blue{
+    background-color:blue;
+}
+
+.red{
+    background-color:red;
+}
+
+.grey-text{
+    color:dimgrey;
+}
+
+.blue-text{
+    color:aqua;
+}
+
+.orange-text{
+    color:darkorange;
+}
+
+.italic-text{
+    font-style: italic;
+}
+
+.bold-text{
+    font-weight:900;
+}
+
+.third-height{
+    height: 33%;
+}
+
+@font-face {
+    font-family: 'Tangerine';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/SansForgetica-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Space';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/spaceage.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Rebel';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/Rebellion.otf") format("opentype");
+}
+
+.title-font{
+    font-family: 'Tangerine','sans-serif';
+    font-size: 96px;
+    opacity: 0.2;
+}
+
+
+.marquee-font{
+    font-family: 'Rebel','sans-serif';
+    font-size: 96px;
+    opacity: 0;
+}
+
+.subtitle-font{
+    font-family: 'Space','sans-serif';
+    font-size: 32px;
+     /*transform: translateX(100%);
+     -webkit-transform: translateX(100%);*/
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0.2;
+        color:yellow;
+    }
+    33%{
+        color:aqua;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    animation-name: fadeOutOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+}
+
+.change-color {
+    opacity: 1;
+    animation-name: fadeOutColor;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+}
+
+@keyframes fadeOutOpacity {
+    0% {
+        opacity: 1;
+        color:#FF1493;
+
+    }
+    100% {
+        opacity: 0;
+        color:inherit;
+    }
+}
+
+@keyframes fadeOutColor {
+    0% {
+
+        background-color:black;
+
+    }
+    100% {
+        background-color:white;
+    }
+}
+
+
+
+.slide-in {
+    opacity: 1;
+    animation-name: sliding;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes sliding {
+    0% { -webkit-transform: translateX(-300%);  }
+}
+
+@keyframes slideing {
+    0% { transform: translateX(-300%); }
+}
+
+.img-responsive {
+    max-width: 100%;
+    width:auto;
+    height: auto;
+    display: block;
+    max-height: 120px;
+}
+
+.mdl-card__media{
+    background: none;
+}
+
+.content-only {
+    width: auto !important;
+}
+
+.transparent{
+    background:none !important;
+}
+
+.mdl-cell{
+    border:solid;
+    border-color:blue;
+}
