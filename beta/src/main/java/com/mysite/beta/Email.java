@@ -1,71 +1,78 @@
 package com.mysite.beta;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.mail.MailException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Controller;
 
 @Controller
 @ComponentScan()
 public class Email {
 
-        private String email;
-        private String content;
+    @Value("${spring.mail.host}")
+    private String host;
 
-        public String getEmail() {
-            return email;
-        }
+    @Value("${spring.mail.port}")
+    private int port;
 
-        public void setEmail(String email) {
-            this.email = email;
-        }
+    @Value("${spring.mail.username}")
+    private String username;
 
-        public String getContent() {
-            return content;
-        }
+    @Value("${spring.mail.password}")
+    private String password;
 
-        public void setContent(String content) {
-            this.content = content;
-        }
 
-    @Autowired
-        private JavaMailSender mailSender;
+   public String fromemail = "jason.triche@gmail.com";
 
-    public void setMailSender(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
+    public String getFromemail() {
+        return fromemail;
+    }
+
+    public void setId(String fromemail) {
+        this.fromemail = fromemail;
     }
 
 
 
+    public String content = "You did that. Remember to remove email credentials and post to git";
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String toemail = "trichejason@gmail.com";
+
+
     public void sendEmail() {
-        MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
-            public void prepare(MimeMessage mimeMessage) throws Exception {
+            //create sender
 
-                String address = "jason.triche@gmail.com";
-                String name = "tester one";
-                mimeMessage.setRecipient(Message.RecipientType.TO,
-                        new InternetAddress(address));
-                mimeMessage.setFrom(new InternetAddress(address));
-                mimeMessage.setText(
-                        "Dear " + name
-                                + ", thank you for placing order.");
-            }
-        };
-        try {
-            this.mailSender.send(preparator);
-        } catch (
-                MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());
-        }
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+        mailSender.setHost(host);
+        mailSender.setPort(port);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+
+        //create mail instance
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromemail);
+        message.setTo(toemail);
+        message.setSubject("Hello World!");
+        message.setText(content);
+
+//actually send it
+        mailSender.send(message);
+
     }
 
 
