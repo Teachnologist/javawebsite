@@ -1,0 +1,53 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Material Design</title>
+    <script src="/jquery/jquery.js"></script>
+    <script src="/mdl/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/mdl/material.min.css"
+          th:href="@{/mdl/material.min.css}">
+
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/style.css"
+          th:href="@{/resources/css/style.css}"/>
+
+
+</head>
+<script>
+    $(document).ready(function(){
+        alert("jquery on");
+    });
+
+</script>
+<body>
+
+
+
+<div class="mdl-layout no-vertical-wrapper change-color">
+    <div class="mdl-grid">
+
+
+
+        <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
+        <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Me</h2></div>
+
+
+
+
+        <div class="mdl-cell mdl-cell--4-col"></div>
+
+        <div class="mdl-cell mdl-cell--4-col center-child">
+                <div class="mdl-card__media">
+                    <img class="img-responsive" src="https://media.licdn.com/dms/image/C4E03AQEvEsV3KfHUXw/profile-displayphoto-shrink_200_200/0?e=1550707200&v=beta&t=4w05CVxPCImSE8VvJzu09t_QJW0EvVxhk8YD8c1ZGbM"/>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col"></div>
+
+    </div>
+</div>
+</body>
+</html>

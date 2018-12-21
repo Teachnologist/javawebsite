@@ -27,6 +27,22 @@ public class SimpleController {
         email.sendEmail();
         return "index";
     }
+
+    /**DEC 19**/
+    @GetMapping("/contact")
+    public String contactPage(Model model) {
+        model.addAttribute("email", new Email());
+        return "contact";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
+    }
+
+    /**DEC 19**/
+
+
 /*
     @GetMapping("/two")
     public String twoPage(Model model) {

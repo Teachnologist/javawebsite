@@ -50,6 +50,8 @@ body {
     background-color:blue;
 }
 
+
+
 .red{
     background-color:red;
 }
@@ -221,4 +223,27 @@ body {
 .mdl-cell{
     border:solid;
     border-color:blue;
+}
+
+/***DEC 19***/
+.contact-card{
+    background-color:cornflowerblue;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.contact-responsive {
+    max-width: 100%;
+    width:auto;
+    height: auto;
+    display: block;
+    max-height: 260px;
+}
+
+.no-vertical-wrapper {
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
 }

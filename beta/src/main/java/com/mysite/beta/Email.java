@@ -33,6 +33,10 @@ public class Email {
         return fromemail;
     }
 
+    public void setFromemail(String fromemail) {
+        this.fromemail = fromemail;
+    }
+
     public void setId(String fromemail) {
         this.fromemail = fromemail;
     }
