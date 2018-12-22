@@ -5,6 +5,12 @@
     <title>Material Design</title>
     <script src="/jquery/jquery.js"></script>
     <script src="/mdl/material.min.js"></script>
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script type="text/javascript" src="http://github-profile.com/dist/gh-profile-card.min.js"></script>
+
+    <link rel="stylesheet" href="http://github-profile.com/dist/gh-profile-card.min.css" />
+
     <link rel="stylesheet" type="text/css" media="all"
           href="/mdl/material.min.css"
           th:href="@{/mdl/material.min.css}">
@@ -13,6 +19,10 @@
     <link rel="stylesheet" type="text/css" media="all"
           href="/resources/css/style.css"
           th:href="@{/resources/css/style.css}"/>
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/buttons.css"
+          th:href="@{/resources/css/buttons.css}"/>
 
 
 </head>
@@ -29,56 +39,80 @@
         <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
         <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
 
+        <!--STANDARD-->
         <div class="mdl-cell mdl-cell--4-col center-child">
             <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
+                <div class="mdl-card content-only center-child transparent" >
+                    <div class="mdl-card__media center-child" id="github_card">
+                        <img class="img-responsive" src="/resources/images/github-3-256.png">
                     <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
+                        <a href="https://www.github.com/teachnologist" class="center-self" target="_blank"><button class="github-button">View Repo</button></a>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="mdl-cell mdl-cell--4-col center-child">
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/email-5-256.png">
+                    <div class="mdl-card__actions center-child">
+                        <a href="/contact" id="contact_link" class="center-self" target="_blank"><button id="contact_link_button" class="email-button">Email Me</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" id="linkedin_badge">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/linkedin-3-256.png">
+                    <div class="mdl-card__actions center-child">
+                        <a href="https://www.linkedin.com/in/jasontriche" class="center-self" target="_blank"><button class="linkedin-button">View Profile</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!--STANDARD-->
+        <!--JS AFFECTED
+        TODO: Merge with modal element to display after click with js on
+        -->
+
+
+
+        <div class="mdl-cell mdl-cell--4-col center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" id="contact_form">
+                    <div class="mdl-card__media" >
                         <img class="img-responsive" src="/resources/images/email_logo.png">
                     </div>
                     <div class="mdl-card__supporting-text center-child">
                         <p>Contact Me</p>
                     </div>
                     <div class="mdl-card__actions center-child">
-                        <a href="/contact" id="contact_link" class="center-self orange-text">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/linkedin_logo.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my profile</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
+                        <a href="/contact" id="contact_link1" class="center-self orange-text">Contact</a>
                     </div>
                 </div>
             </div>
         </div>
 
 
-<div id="contact_form" style="background-color:pink">
+
+
+
+
+
+
+        <!--JS AFFECTED-->
+
+
+
 
 </div>
     </div>
@@ -89,10 +123,16 @@
         alert("jquery on");
 
 
+
+
      //   $("#contact_form").css("display","none");
         getForm();
+        getLinkedInBadge();
+        getGithubCard();
 
         $("#contact_link").attr("href","#");
+        $("#contact_link").removeAttr('target');
+
 
 
         $("#contact_link").click(function(){
@@ -104,6 +144,26 @@
 
 
         });
+
+        function getGithubCard(){
+            var widget = new GitHubCard({
+                username: 'TEACHNOLOGIST',
+                template: '#github_card',
+                sortBy: 'updateTime',
+                reposHeaderText: 'Active Repos',
+                maxRepos: 3
+            });
+
+            widget.init()
+
+
+            return false;
+        }
+
+        function getLinkedInBadge(){
+            $("#linkedin_badge").load('/resources/jqtemplates/linkedin.html #linkedin_card');
+
+        }
 
         function getForm() {
             hideForm();
