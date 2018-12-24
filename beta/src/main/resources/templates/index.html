@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Material Design</title>
     <script src="/jquery/jquery.js"></script>
     <script src="/mdl/material.min.js"></script>
@@ -24,6 +24,10 @@
           href="/resources/css/buttons.css"
           th:href="@{/resources/css/buttons.css}"/>
 
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/card.css"
+          th:href="@{/resources/css/card.css}"/>
+
 
 </head>
 <body>
@@ -33,46 +37,46 @@
 <div class="mdl-layout wrapper change-color">
     <div class="mdl-grid">
 
-          <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
+          <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
 
 
-        <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
-        <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
 
         <!--STANDARD-->
-        <div class="mdl-cell mdl-cell--4-col center-child">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent" >
                     <div class="mdl-card__media center-child" id="github_card">
                         <img class="img-responsive" src="/resources/images/github-3-256.png">
                     <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self" target="_blank"><button class="github-button">View Repo</button></a>
+                        <a href="https://www.github.com/teachnologist" id="github_link" class="center-self nojs-link" target="_blank"><button class="github-button">View Repo</button></a>
                     </div>
                 </div>
             </div>
         </div>
         </div>
 
-        <div class="mdl-cell mdl-cell--4-col center-child">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent">
                     <div class="mdl-card__media center-child">
                         <img class="img-responsive" src="/resources/images/email-5-256.png">
                     <div class="mdl-card__actions center-child">
-                        <a href="/contact" id="contact_link" class="center-self" target="_blank"><button id="contact_link_button" class="email-button">Email Me</button></a>
+                        <a href="/contact" id="contact_link" class="center-self nojs-link" target="_blank"><button id="contact_link_button" class="email-button">Email Me</button></a>
                     </div>
                 </div>
             </div>
         </div>
         </div>
 
-        <div class="mdl-cell mdl-cell--4-col center-child">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent" id="linkedin_badge">
                     <div class="mdl-card__media center-child">
                         <img class="img-responsive" src="/resources/images/linkedin-3-256.png">
                     <div class="mdl-card__actions center-child">
-                        <a href="https://www.linkedin.com/in/jasontriche" class="center-self" target="_blank"><button class="linkedin-button">View Profile</button></a>
+                        <a href="https://www.linkedin.com/in/jasontriche" id="linkedin_link" class="center-self nojs-link" target="_blank"><button class="linkedin-button">View Profile</button></a>
                     </div>
                 </div>
             </div>
@@ -83,10 +87,20 @@
         <!--JS AFFECTED
         TODO: Merge with modal element to display after click with js on
         -->
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" >
+                    <div class="mdl-card__media center-child" id="display_window">
+                 DISPLAY WINDOW
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
-        <div class="mdl-cell mdl-cell--4-col center-child">
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent" id="contact_form">
                     <div class="mdl-card__media" >
@@ -127,12 +141,9 @@
 
      //   $("#contact_form").css("display","none");
         getForm();
-        getLinkedInBadge();
-        getGithubCard();
 
-        $("#contact_link").attr("href","#");
-        $("#contact_link").removeAttr('target');
-
+        $(".nojs-link").attr("href","#");
+        $(".nojs-link").removeAttr('target');
 
 
         $("#contact_link").click(function(){
@@ -141,27 +152,43 @@
         }else{
                 showForm();
         }
+        });
 
+
+        $("#github_link").click(function(){
+            alert(1);
+                getGithubCard();
+                alert(3);
+                return false;
 
         });
+
+
+        $("#linkedin_link").click(function(){
+            alert(2);
+            getLinkedInBadge();
+            return false;
+        });
+
 
         function getGithubCard(){
             var widget = new GitHubCard({
                 username: 'TEACHNOLOGIST',
-                template: '#github_card',
+                template: '#display_window',
                 sortBy: 'updateTime',
                 reposHeaderText: 'Active Repos',
                 maxRepos: 3
             });
 
-            widget.init()
+            widget.init();
+            console.log("initialized - possibly has to be loaded while window loads");
 
 
             return false;
         }
 
         function getLinkedInBadge(){
-            $("#linkedin_badge").load('/resources/jqtemplates/linkedin.html #linkedin_card');
+            $("#display_window").load('/resources/jqtemplates/linkedin.html #linkedin_card');
 
         }
 
@@ -172,6 +199,11 @@
                 $("#submit").click(function () {
 
                     alert($("#fromemail").val());
+                    hideForm();
+                    return false;
+                });
+
+                $("#cancel").click(function () {
                     hideForm();
                     return false;
                 });
