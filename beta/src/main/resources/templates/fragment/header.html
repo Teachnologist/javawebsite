@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="headerfiles"></head>
+
+
+<body>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+
+
+    <div th:fragment="header" class="demo-layout-transparent mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <p class="mdl-layout-title">Jason Triche</p>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="/">HOME</a>
+                    <a class="mdl-navigation__link" href="/about">ABOUT</a>
+                    <a class="mdl-navigation__link" href="/contact">CONTACT</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <p class="mdl-layout-title">Jason Triche</p>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">HOME</a>
+                <a class="mdl-navigation__link" href="/about">ABOUT</a>
+                <a class="mdl-navigation__link" href="/contact">CONTACT</a>
+            </nav>
+        </div>
+
+
+        <style>
+
+            .demo-layout-transparent .mdl-layout__header {
+                /* This background is dark, so we set text to white. Use 87% black instead if
+                   your background is light. */
+                background-color:#ffffff !important;
+                color: #0077B5 !important;
+            }
+
+            .mdl-layout__drawer-button {
+                color: #0077B5 !important;
+            }
+
+            .mdl-layout__header-row, .mdl-navigation__link {
+
+                color: #0077B5 !important;
+            }
+
+            .mdl-layout__header-row:hover {
+
+                color: #86888A !important;
+            }
+
+            .mdl-navigation__link:hover {
+
+                color: #86888A !important;
+            }
+
+            .mdl-layout-title {
+                font-family: 'Tangerine','sans-serif' !important;
+                color: #0077B5 !important;
+            }
+        </style>
+
+
+
+
+
+    </div>
+</body>
+</html>

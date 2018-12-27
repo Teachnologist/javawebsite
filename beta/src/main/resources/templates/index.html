@@ -1,46 +1,71 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material Design</title>
-    <script src="/jquery/jquery.js"></script>
-    <script src="/mdl/material.min.js"></script>
-    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+<div th:insert="/fragment/heading.html :: heading"></div>
+<div th:insert="/fragment/header.html :: header"></div>
+<main class="mdl-layout mdl-layout__content wrapper change-color">
 
-    <script type="text/javascript" src="http://github-profile.com/dist/gh-profile-card.min.js"></script>
-
-    <link rel="stylesheet" href="http://github-profile.com/dist/gh-profile-card.min.css" />
-
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/mdl/material.min.css"
-          th:href="@{/mdl/material.min.css}">
+    <div class="mdl-grid jsblock inactive-block">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="jasontriche">
+                <a class="LI-simple-link" href='https://www.linkedin.com/in/jasontriche?trk=profile-badge'>Jason Triche 1</a>
+            </div>
+        </div>
 
 
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/style.css"
-          th:href="@{/resources/css/style.css}"/>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
 
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/buttons.css"
-          th:href="@{/resources/css/buttons.css}"/>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" >
+                    <div class="mdl-card__media center-child" id="github_card">
+                        <img class="img-responsive" src="/resources/images/github-256.png">
+                        <div class="mdl-card__actions center-child">
+                            <a href="https://www.github.com/teachnologist" id="github_link" class="center-self nojs-link" target="_blank"><button class="github-button link-font">View Repo</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/card.css"
-          th:href="@{/resources/css/card.css}"/>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/email-5-256.png">
+                        <div class="mdl-card__actions center-child">
+                            <a href="/contact" id="contact_link" class="center-self nojs-link" target="_blank"><button id="contact_link_button" class="email-button link-font">Contact</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/info-2-256.png">
+                        <div class="mdl-card__actions center-child">
+                            <a href="/about" id="about_link" class="center-self nojs-link" target="_blank"><button id="about_link_button" class="email-button link-font">About</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-</head>
-<body>
 
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1>
+        </div>
 
+    </div>
 
-<div class="mdl-layout wrapper change-color">
-    <div class="mdl-grid">
-
+    <div class="mdl-grid no-jsblock active-block">
           <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
 
 
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1>
+        </div>
         <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
 
         <!--STANDARD-->
@@ -129,18 +154,23 @@
 
 
 </div>
-    </div>
-</div>
+    </main>
+
+
 </body>
 <script>
     $(document).ready(function(){
         alert("jquery on");
+        $(".no-jsblock").removeClass("active-block");
+        $(".no-jsblock").addClass("inactive-block");
+        $(".jsblock").removeClass("inactive-block");
+        $(".jsblock").addClass("active-block");
 
 
 
 
      //   $("#contact_form").css("display","none");
-        getForm();
+     /*   getForm();
 
         $(".nojs-link").attr("href","#");
         $(".nojs-link").removeAttr('target');
@@ -221,7 +251,7 @@
 
             $("#contact_form").css("display","block");
 
-        }
+        }*/
 
     });
 

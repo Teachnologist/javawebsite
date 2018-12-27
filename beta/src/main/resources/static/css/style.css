@@ -101,6 +101,17 @@ body {
     src: url("/resources/fonts/Rebellion.otf") format("opentype");
 }
 
+
+
+.link-font {
+    font-family: 'Avenirblack','sans-serif';
+}
+
+.minortitle-font {
+    font-family: 'Avenirblack','sans-serif';
+    font-size: 36px;
+}
+
 .title-font{
     font-family: 'Tangerine','sans-serif';
     font-size: 96px;
@@ -221,8 +232,8 @@ body {
 }
 
 .mdl-cell{
-    border:solid;
-    border-color:blue;
+    border:dotted;
+    border-color:green;
 }
 
 /***DEC 19***/
@@ -247,3 +258,21 @@ body {
     display: flex;
     align-items: center;
 }
+
+.LI-badge-container {
+    width:100% !important;
+}
+
+.active-block {
+    display:inherit;
+}
+
+.inactive-block {
+    display:none;
+}
+
+.immutable-block {
+    display:inherit;
+}
+
+

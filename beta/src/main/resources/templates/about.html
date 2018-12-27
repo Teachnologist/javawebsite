@@ -1,57 +1,47 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Material Design</title>
-    <script src="/jquery/jquery.js"></script>
-    <script src="/mdl/material.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/mdl/material.min.css"
-          th:href="@{/mdl/material.min.css}">
-
-
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/style.css"
-          th:href="@{/resources/css/style.css}"/>
-
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/card.css"
-          th:href="@{/resources/css/card.css}"/>
-
-
-</head>
-<script>
-    $(document).ready(function(){
-        alert("jquery on");
-    });
-
-</script>
+<div th:insert="/fragment/heading.html :: heading"></div>
 <body>
+<div th:insert="/fragment/header.html :: header"></div>
 
 
 
-<div class="mdl-layout no-vertical-wrapper change-color">
+<main class="mdl-layout mdl-layout__content wrapper change-color blue-background">
     <div class="mdl-grid">
 
 
 
-        <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
-        <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Me</h2></div>
+        <div class="mdl-cell mdl-cell--12-col center-child blue-text">
+            <p style="word-wrap: break-word;">
+                In my day job, I have the opportunity to use all of the PHP, VueJS, Laravel, Red Hat Enterprise Linux, MySQL/MariaDB, Bash, git and other tools and languages to build upon an internationally promoted, enterprise approved learning management system called Elentra. Due to the nature of enterprise security, there isn’t a whole lot I can show on the web. So if you’re interested, please checkout my LinkedIn profile and my GitHub repository to get an idea of what I have been doing for my career.
 
-
-
-
-        <div class="mdl-cell mdl-cell--4-col"></div>
-
-        <div class="mdl-cell mdl-cell--4-col center-child">
-                <div class="mdl-card__media">
-                    <img class="img-responsive" src="https://media.licdn.com/dms/image/C4E03AQEvEsV3KfHUXw/profile-displayphoto-shrink_200_200/0?e=1550707200&v=beta&t=4w05CVxPCImSE8VvJzu09t_QJW0EvVxhk8YD8c1ZGbM"/>
-            </div>
+            </p>
         </div>
 
-        <div class="mdl-cell mdl-cell--4-col"></div>
+            </br>
+        <div class="mdl-cell mdl-cell--12-col center-child blue-text">
+            <p style="word-wrap: break-word;">
+                It is nice to unwrap a prepackaged application and force it into my workflow, but it is even nicer to have the skills to build the components that offer a favorable and worthwhile user experience; so I built this site in IntelliJ with nothing but the the Java Spring Framework and a dream. The html is created via Thymeleaf and Material Design Lite handles the style of the layout. I threw in some jQuery for User Interface control and AJAX processing. One of my favorite things about this site is that javascript is not required for functionality; though it required 2N of my time, I enjoy developing applications that will work on the majority of browsers regardless of the settings.
+            </p>
+        </div>
+
+            </br>
+            <div class="mdl-cell mdl-cell--12-col center-child blue-text">
+            <p style="word-wrap: break-word;">
+                In the near future, I will be using this site to deploy small applications that have touched some of my pain points. I love interacting with REST APIs, big data, and server installed but client facing productivity tools such as Tableau, and I want to share all of my work with you. Don’t be a stranger; I left my LinkedIn, Github and an email form on this site for us to become great friends in technology.
+            </p>
+
+        </div>
+
 
     </div>
-</div>
+</main>
+<style>
+    .blue-text {
+        color: #0077B5 !important;
+        background-color: inherit;
+        border-color: #0077B5 !important;
+    }
+</style>
 </body>
 </html>
