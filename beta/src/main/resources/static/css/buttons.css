@@ -47,12 +47,7 @@
     text-decoration: none;
 }
 
-@font-face {
-    font-family: 'Avenirblack';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/AvenirLTStd-Black.otf") format("opentype");
-}
+
 
 
 .email-button {
@@ -90,7 +85,7 @@
     border-radius: 8px;
     min-height: 50px;
     line-height: 50px;
-    font-family: 'ProximaNovaLight','sans-serif';
+    font-family: 'Avenirblack','sans-serif';
     min-width: 200px;
     font-size: 30px;
     font-weight: 100;
@@ -103,19 +98,5 @@
 .linkedin-button:hover {
     color: #d0d0d0;
     text-decoration: none;
-}
-
-@font-face {
-    font-family: 'ProximaNovaLight';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/FontsFree-Net-Proxima-Nova-Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Digital';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/IntellectaDigital.otf") format("opentype");
 }
 

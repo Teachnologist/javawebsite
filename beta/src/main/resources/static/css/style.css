@@ -80,28 +80,6 @@ body {
     height: 33%;
 }
 
-@font-face {
-    font-family: 'Tangerine';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/SansForgetica-Regular.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Space';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/spaceage.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Rebel';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/Rebellion.otf") format("opentype");
-}
-
-
 
 .link-font {
     font-family: 'Avenirblack','sans-serif';

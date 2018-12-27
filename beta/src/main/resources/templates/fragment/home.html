@@ -1,0 +1,126 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/fragment/heading.html :: heading">
+</head>
+<body>
+<div th:fragment="home">
+<main class="mdl-layout mdl-layout__content wrapper change-color">
+
+    <div class="mdl-grid jsblock inactive-block">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+            <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="jasontriche">
+                <a class="LI-simple-link" href='https://www.linkedin.com/in/jasontriche?trk=profile-badge'>Jason Triche</a>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" >
+                    <div class="mdl-card__media center-child" id="github_card">
+                        <img class="img-responsive" src="/resources/images/github-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="https://www.github.com/teachnologist" id="github_link" class="center-self js-link" target="_blank"><button class="github-button link-font">View Repo</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/email-5-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="#contact-panel" id="contact_link" class="center-self js-link"><button id="contact_link_button" class="email-button link-font">Contact</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/info-2-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="#about-panel" id="about_link" class="center-self js-link"><button id="about_link_button" class="email-button link-font">About</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div><!--end of js grid-->
+
+    <!--beginning of no js grid-->
+    <div class="mdl-grid no-jsblock active-block">
+
+
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1>
+        </div>
+
+        <!--STANDARD-->
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" id="linkedin_badge">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/linkedin-3-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="https://www.linkedin.com/in/jasontriche" id="linkedin_link" class="center-self nojs-link" target="_blank"><button class="linkedin-button">View Profile</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent" >
+                    <div class="mdl-card__media center-child" id="github_card">
+                        <img class="img-responsive" src="/resources/images/github-3-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="https://www.github.com/teachnologist" id="github_link" class="center-self nojs-link" target="_blank"><button class="github-button">View Repo</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/email-5-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="#contact-panel" id="contact_link" class="center-self nojs-link" target="_blank"><button id="contact_link_button" class="email-button link-font">Contact</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <div class="mdl-card content-only center-child transparent">
+                    <div class="mdl-card__media center-child">
+                        <img class="img-responsive" src="/resources/images/info-2-256.png" />
+                    </div>
+                        <div class="mdl-card__actions center-child">
+                            <a href="#about-panel" id="about_link" class="center-self nojs-link" target="_blank"><button id="about_link_button" class="email-button link-font">About</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    </div>
+</body>
+</html>

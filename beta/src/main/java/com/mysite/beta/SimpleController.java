@@ -15,7 +15,7 @@ public class SimpleController {
     String appName;
 
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String indexPage(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("email", new Email());
         return "index";
@@ -33,6 +33,12 @@ public class SimpleController {
     public String contactPage(Model model) {
         model.addAttribute("email", new Email());
         return "contact";
+    }
+
+    @GetMapping("/home")
+    public String homePage(Model model) {
+        model.addAttribute("email", new Email());
+        return "home";
     }
 
     @GetMapping("/about")

@@ -1,0 +1,107 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="headerfiles"></head>
+
+
+<body>
+<!-- Uses a transparent header that draws on top of the layout's background -->
+
+<div th:fragment="footer">
+<style>
+
+    .footer-title {
+        font-family: 'Tangerine','sans-serif';
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 48px;
+        border: none;
+        background-color:inherit;
+    }
+
+    .footer-title:hover {
+        font-size: 52px;
+    }
+
+    .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 99991;
+        background-color:#0077B5;
+        padding: 0 !important;
+        margin: 0 !important;
+
+
+    }
+
+    .remove-decor {text-decoration: none;}
+</style>
+    <script>
+
+        $(document).ready(function(){
+            var tagline = [];
+            var obj = {};
+            obj.text = "JASON TRICHE";
+            obj.font = "tangerine";
+            tagline.push(obj);
+
+            var obj = {};
+            obj.text = "FOR HIRE";
+            obj.font = "avenir";
+            tagline.push(obj);
+
+            var obj = {};
+            obj.text = "TRICHE MEDIA LLC";
+            obj.font = "ibm";
+            tagline.push(obj);
+
+            cycleWords(tagline,0,3000);
+            function cycleWords(words,index,time){
+
+                setTimeout(function() {
+
+                        replaceText(words[index].text, words[index].font);
+                        index++;
+                        if (words.length  === index) {
+                            index = 0;
+                        }
+                        cycleWords(words, index,time);
+                },time);
+            }
+
+            function replaceText(word,font) {
+                $('#tagline').removeClass();
+                $('#tagline').addClass(font);
+                $('#tagline').html(word);
+            }
+
+
+
+        });
+
+    </script>
+
+<div class="mdl-layout-spacer"></div>
+
+
+<footer class="mdl-mini-footer fixed-footer">
+    <div class="mdl-grid">
+        <!--<div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+           <a href="/home"><button class="mdl-layout-title">Jason Triche</button></a>
+        </div>-->
+
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+
+        <div class="center-child">
+            <a href="/home" class="remove-decor"><button class="footer-title"><span id="tagline">JASON TRICHE</span></button></a>
+        </div>
+        </div>
+
+
+
+
+    </div>
+</footer>
+    </div>
+</body>
+</html>
