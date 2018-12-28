@@ -1,48 +1,49 @@
 package com.mysite.beta;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmailConfig {
 
-    @Value("${spring.mail.host}")
-    private String host;
+    private static String host;
 
-    @Value("${spring.mail.port}")
-    private int port;
+    private static int port;
 
-    @Value("${spring.mail.username}")
-    private String username;
+    private static String username;
 
-    @Value("${spring.mail.password}")
-    private String password;
+    private static String password;
 
-
-    public String getHost() {
+    public static String getHost() {
         return host;
     }
 
+    @Value("${spring.mail.host}")
     public void setHost(String host) {
         this.host = host;
     }
 
-    public Integer getPort() {
+    public static Integer getPort() {
         return port;
     }
 
+    @Value("${spring.mail.port}")
     public void setPort(Integer port) {
         this.port = port;
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
+    @Value("${spring.mail.username}")
     public void setUsername(String username) {
-        this.username = username;
+        System.out.println("USERNAME: "+username);this.username = username;
     }
 
-    public String getPassword() { return password; }
+    public static String getPassword() { return password; }
 
+    @Value("${spring.mail.password}")
     public void setPassword(String password) {
         this.password = password;
     }
