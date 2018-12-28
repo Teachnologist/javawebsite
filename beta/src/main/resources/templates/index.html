@@ -5,7 +5,7 @@
     <title>Material Design</title>
     <script src="/jquery/jquery.js"></script>
     <script src="/mdl/material.min.js"></script>
-    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
 
     <script type="text/javascript" src="http://github-profile.com/dist/gh-profile-card.min.js"></script>
 
@@ -28,114 +28,243 @@
           href="/resources/css/card.css"
           th:href="@{/resources/css/card.css}"/>
 
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/dialog.css"
+          th:href="@{/resources/css/dialog.css}"/>
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/resources/css/cover"
+          th:href="@{/resources/css/cover}"/>
+
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js"></script>
 
 </head>
 <body>
 
-
-
-<div class="mdl-layout wrapper change-color">
+<main class="mdl-layout wrapper change-color cover ">
     <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <p style="font-size: 88px;" id="walking-title" class="opaque-7">WELCOME TO</p>
+        </div>
 
-          <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
-
-
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
-
-        <!--STANDARD-->
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent" >
-                    <div class="mdl-card__media center-child" id="github_card">
-                        <img class="img-responsive" src="/resources/images/github-3-256.png">
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" id="github_link" class="center-self nojs-link" target="_blank"><button class="github-button">View Repo</button></a>
-                    </div>
-                </div>
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <h1 class="title-font fade-in" id="title">JASON TRICHE</h1>
             </div>
-        </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media center-child">
-                        <img class="img-responsive" src="/resources/images/email-5-256.png">
-                    <div class="mdl-card__actions center-child">
-                        <a href="/contact" id="contact_link" class="center-self nojs-link" target="_blank"><button id="contact_link_button" class="email-button">Email Me</button></a>
-                    </div>
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+                    <a href="/home"><button>Begin</button></a>
                 </div>
-            </div>
+
+
         </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent" id="linkedin_badge">
-                    <div class="mdl-card__media center-child">
-                        <img class="img-responsive" src="/resources/images/linkedin-3-256.png">
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.linkedin.com/in/jasontriche" id="linkedin_link" class="center-self nojs-link" target="_blank"><button class="linkedin-button">View Profile</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <!--STANDARD-->
-        <!--JS AFFECTED
-        TODO: Merge with modal element to display after click with js on
-        -->
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent" >
-                    <div class="mdl-card__media center-child" id="display_window">
-                 DISPLAY WINDOW
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent" id="contact_form">
-                    <div class="mdl-card__media" >
-                        <img class="img-responsive" src="/resources/images/email_logo.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>Contact Me</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="/contact" id="contact_link1" class="center-self orange-text">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-        <!--JS AFFECTED-->
-
-
-
-
-</div>
     </div>
-</div>
+
+
+</main>
+
 </body>
+<style>
+
+    #modal-buttons {
+        display:block;
+        background-color:white;
+    }
+
+    #modal-buttons > a {
+        display:inline;
+        color:green;
+    }
+
+    .modal-trigger{
+        display:none;
+    }
+
+
+   #modal-body {
+       position:absolute;
+       left:0;
+       top:0;
+       width:100%;
+       height:100%;
+       background-color:green;
+       opacity:0.6;
+       z-index:998;
+   }
+
+   #modal-filler {
+       position:relative;
+       height:100%;
+       width:100%;
+       opacity:1;
+       background-color:blue;
+   }
+
+   #modal-canvas {
+       position:absolute;
+       left:0;
+       top:25%;
+       bottom:25%;
+       width:100%;
+       height:auto;
+       background-color:yellow;
+       opacity:1;
+       z-index:999;
+   }
+
+#modal-banner {
+    width:100%;
+    position:relative;
+    background-color:brown;
+    height:auto;
+}
+
+
+</style>
 <script>
     $(document).ready(function(){
         alert("jquery on");
 
+        var title = "Welcome to ...";
+        var name = "JASON TRICHE";
+
+
+        $("#walking-title").html("");
+        $("#title").css("opacity",0.1);
+
+        var wordarray = title.split("");
+
+        walkWord(wordarray,500,0);
+
+        function addName(){
+            $("#title").html(name);
+            $("#title").animate({opacity: 0.7},"slow");
+
+        }
+
+
+        function walkWord(wordarray,time,index){
+console.dir(wordarray);
+            setTimeout(function() {
+
+
+                var i = parseInt(index);
+                if(wordarray.length - 1 === i){
+                    addName();
+                    return false;
+                }
+
+                console.dir(wordarray[i]);
+
+                printLetter(wordarray[i]);
+                i++;
+
+console.log(i);
+                walkWord(wordarray,time,i);
+            }, time);
+
+
+        }
+
+        function printLetter(letter){
+
+            $("#walking-title").append(letter);
+            return false;
+
+        }
+
+
+
+
+
+        var content = {};
+
+    /*    (function() {
+
+            'use strict';
+            var dialog = document.querySelector('#modal-example');
+            var closeButton = dialog.querySelector('button');
+            var showButton = document.querySelector('#show-modal-example');
+            if (! dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
+            var closeClickHandler = function(event) {
+                dialog.close();
+            };
+            var showClickHandler = function(event) {
+                dialog.showModal();
+            };
+            showButton.addEventListener('click', showClickHandler);
+            closeButton.addEventListener('click', closeClickHandler);
+        }());*/
+
+        preloadModal();
+
+    function preloadModal(){
+        $("#modal-content").load('/resources/jqtemplates/linkedin.html #linkedin_card',function(){
+            content["linkedin_link"]= $(this).html();
+
+        });
+
+    }
+
+
+        $("#linkedin_link").click(function(){
+            alert($(".modal-trigger").css("display"));
+           if($(".modal-trigger").css("display") != "none"){
+               hideModal(".modal-trigger");
+           }else{
+
+               loadLI();
+
+           }
+
+        });
+
+        function loadLI(){
+            alert(content["linkedin_link"]);
+            $("#modal-content").html(content["linkedin_link"]);
+        }
+
+        $("#github_link").click(function(){
+            alert($(".modal-trigger").css("display"));
+            if($(".modal-trigger").css("display") != "none"){
+                hideModal(".modal-trigger");
+            }else{
+                showModal(".modal-trigger");
+                getGithubCard("#modal-content");
+            }
+
+        });
+
+
+
+        function hideModal(selector){
+            $(".cancel").off();
+            $(".action").off();
+            $(selector).css("display","none");
+
+            return false;
+        }
+
+        function showModal(selector,content_html){
+
+            $(selector).css("display","block");
+
+            $("#modal-content").html(content_html);
+
+            $(".cancel").click(function() {
+                alert(selector);
+                hideModal(selector);
+                return false;
+            });
+
+
+            $(".action").click(function() {
+                alert("something happens!");
+                alert(selector);
+                return false;
+            });
+
+        }
 
 
 
@@ -144,6 +273,8 @@
 
         $(".nojs-link").attr("href","#");
         $(".nojs-link").removeAttr('target');
+
+
 
 
         $("#contact_link").click(function(){
@@ -155,26 +286,19 @@
         });
 
 
-        $("#github_link").click(function(){
-            alert(1);
-                getGithubCard();
-                alert(3);
-                return false;
-
-        });
 
 
-        $("#linkedin_link").click(function(){
+      /*  $("#linkedin_link").click(function(){
             alert(2);
             getLinkedInBadge();
             return false;
         });
+*/
 
-
-        function getGithubCard(){
+        function getGithubCard(selector){
             var widget = new GitHubCard({
                 username: 'TEACHNOLOGIST',
-                template: '#display_window',
+                template: selector,
                 sortBy: 'updateTime',
                 reposHeaderText: 'Active Repos',
                 maxRepos: 3
@@ -226,4 +350,10 @@
     });
 
 </script>
+<style>
+    .LI-badge-container {
+        height:100% !important;
+        width:100% !important;
+    }
+</style>
 </html>

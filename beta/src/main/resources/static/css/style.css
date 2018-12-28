@@ -95,6 +95,13 @@ body {
 }
 
 @font-face {
+    font-family: 'Dots';
+    font-style: normal;
+    font-weight: 200;
+    src: url("/resources/fonts/minisystem.otf") format("opentype");
+}
+
+@font-face {
     font-family: 'Rebel';
     font-style: normal;
     font-weight: normal;

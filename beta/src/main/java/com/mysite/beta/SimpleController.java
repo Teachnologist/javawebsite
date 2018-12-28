@@ -15,13 +15,19 @@ public class SimpleController {
     String appName;
 
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String coverPage(Model model) {
         model.addAttribute("appName", appName);
         model.addAttribute("email", new Email());
         return "index";
     }
 
-    @PostMapping("/index")
+    @GetMapping("/home")
+    public String homePage(Model model) {
+        model.addAttribute("appName", appName);
+        return "home";
+    }
+
+    @PostMapping("/home")
     public String greetingSubmit(@ModelAttribute Email email) {
 
         email.sendEmail();
