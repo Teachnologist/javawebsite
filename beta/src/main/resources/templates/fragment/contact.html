@@ -45,7 +45,7 @@
         <div class="mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media white-text">
                 <div class="center-text minortitle-font">CONTACT</div>
-                <form action="#" th:action="@{/index}" th:object="${email}" method="post">
+                <form action="#" th:action="@{/email}" th:object="${email}" method="post">
                     <div class="mdl-card__supporting-text center-child">
                         <div class="contact-responsive white-text">
                             <p>Your Email: <input id="email" type="text" th:field="*{fromemail}" /></p>
@@ -67,7 +67,28 @@
     $(document).ready(function(){
         $("#submit").click(function(){
             alert($("#email").val()+" with \n"+$("#message").val());
-              return false
+
+
+            $.ajax({
+                type: 'POST',
+                // make sure you respect the same origin policy with this url:
+                // http://en.wikipedia.org/wiki/Same_origin_policy
+                url: '/ajax/email',
+                data: {
+                    'fromemail': $("#email").val(),
+                    'content': $("#message").val() // <-- the $ sign in the parameter name seems unusual, I would avoid it
+                },
+                success: function(msg){
+                    alert('wow' + msg);
+                },
+                error:function(msg){
+                    alert('damn! '+msg);
+                }
+            });
+
+
+              return false;
+
         });
     });
 

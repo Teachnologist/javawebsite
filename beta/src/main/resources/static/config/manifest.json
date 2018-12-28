@@ -1,0 +1,23 @@
+{
+  "short_name": "JTriche",
+  "name": "Jason Triche",
+  "icons": [
+    {
+
+      "src": "/resources/images/spring-3-logo-png-transparent.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/resources/images/email_logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0077B5",
+  "display": "standalone",
+  "scope": "/",
+  "orientation": "landscape",
+  "theme_color": "#0077B5"
+}

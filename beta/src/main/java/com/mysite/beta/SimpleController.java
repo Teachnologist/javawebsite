@@ -16,23 +16,10 @@ public class SimpleController {
 
     @GetMapping("/")
     public String indexPage(Model model) {
-        model.addAttribute("appName", appName);
+      /*  model.addAttribute("appName", appName);
+        model.addAttribute("email", new Email());*/
         model.addAttribute("email", new Email());
         return "index";
-    }
-
-    @PostMapping("/index")
-    public String greetingSubmit(@ModelAttribute Email email) {
-
-        email.sendEmail();
-        return "index";
-    }
-
-    /**DEC 19**/
-    @GetMapping("/contact")
-    public String contactPage(Model model) {
-        model.addAttribute("email", new Email());
-        return "contact";
     }
 
     @GetMapping("/home")
@@ -41,10 +28,33 @@ public class SimpleController {
         return "home";
     }
 
-    @GetMapping("/about")
+    @PostMapping("/email")
+    public String emailSubmit(@ModelAttribute Email email) {
+        System.out.println("POSTURL /email");
+        email.sendEmail();
+        return "home";
+    }
+
+    @PostMapping("/ajax/email")
+    public String emailAjaxSubmit(@ModelAttribute Email email) {
+        System.out.println("AJAX POST URL /ajax/email");
+        email.sendEmail();
+        return "email sent";
+    }
+
+    /**DEC 19**/
+ /*   @GetMapping("/contact")
+    public String contactPage(Model model) {
+        model.addAttribute("email", new Email());
+        return "contact";
+    }*/
+
+
+
+   /* @GetMapping("/about")
     public String aboutPage() {
         return "about";
-    }
+    }*/
 
     /**DEC 19**/
 

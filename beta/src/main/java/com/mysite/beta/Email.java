@@ -9,25 +9,21 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
+import java.io.PrintStream;
 
 @Controller
 @ComponentScan()
 public class Email {
 
-    @Value("${spring.mail.host}")
-    private String host;
+    EmailConfig emailConfig = new EmailConfig();
 
-    @Value("${spring.mail.port}")
-    private int port;
-
-    @Value("${spring.mail.username}")
-    private String username;
-
-    @Value("${spring.mail.password}")
-    private String password;
+    private String username = emailConfig.getUsername();
+    private String password = emailConfig.getPassword();
+    private String host = emailConfig.getHost();
+    private Integer port = emailConfig.getPort();
 
 
-   public String fromemail = "jason.triche@gmail.com";
+    public String fromemail = "";
 
     public String getFromemail() {
         return fromemail;
@@ -36,11 +32,6 @@ public class Email {
     public void setFromemail(String fromemail) {
         this.fromemail = fromemail;
     }
-
-    public void setId(String fromemail) {
-        this.fromemail = fromemail;
-    }
-
 
 
     public String content = "You did that. Remember to remove email credentials and post to git";
@@ -53,10 +44,11 @@ public class Email {
         this.content = content;
     }
 
-    public String toemail = "trichejason@gmail.com";
+
 
 
     public void sendEmail() {
+        System.out.println("HOST: "+host+" PORT: "+port);
 
             //create sender
 
@@ -70,8 +62,8 @@ public class Email {
         //create mail instance
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromemail);
-        message.setTo(toemail);
-        message.setSubject("Hello World!");
+        message.setTo(username);
+        message.setSubject("Incoming Message");
         message.setText(content);
 
 //actually send it
