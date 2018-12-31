@@ -124,10 +124,10 @@
 
 
         $("#message").on("keyup",function(){
-            validateContent(10,$(this).val());
+            validateContent(10,$(this).val(),$(this));
         });
 
-        function validateContent(max,value){
+        function validateContent(max,value,element){
             var val = value;
             var max = max;
             var remainder = countRemainder(val,max);
@@ -136,7 +136,7 @@
 
             if(remainder < 1) {
                 var counted = val.slice(0, max);
-                $(this).val(counted);
+                element.val(counted);
                 $("#error2").html("0 of " + max + " words remaining");
             }
 
