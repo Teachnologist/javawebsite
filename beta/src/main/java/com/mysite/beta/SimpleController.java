@@ -56,9 +56,15 @@ public class SimpleController {
         System.out.println("HAS ERRORS: "+result.hasErrors());
         System.out.print(result);
 
-        if(!result.hasErrors()){
-            email.sendEmail();
-            return "emailsuccess";
+        REGEXValidation valid = new REGEXValidation();
+
+        if(!result.hasErrors() && valid.validateEmail(email.fromemail) && valid.validateString(email.content)){
+            Boolean sent = email.sendEmail();
+            if(!sent) {
+                return "error";
+            }else{
+                return "emailsuccess";
+            }
         }else{
             return "error";
         }
@@ -75,6 +81,18 @@ public class SimpleController {
         outputJsonObj.put("content",email.content);
         outputJsonObj.put("success",false);
         outputJsonObj.put("message","Check for correct email and message format");
+
+        REGEXValidation valid = new REGEXValidation();
+
+        if(!valid.validateEmail(email.fromemail)){
+            outputJsonObj.put("message", "Invalid Email Address");
+            return outputJsonObj.toString();
+        }
+
+        if(!valid.validateString(email.content)){
+            outputJsonObj.put("message", "Invalid Message Content");
+            return outputJsonObj.toString();
+        }
 
 
         if(!result.hasErrors()){

@@ -210,7 +210,7 @@ body {
 }
 
 .mdl-cell{
-    border:dotted;
+    border:none;
     border-color:green;
 }
 

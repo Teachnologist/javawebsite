@@ -53,6 +53,7 @@
                 <form action="#" th:action="@{/email}" th:object="${email}" method="post">
                     <div class="mdl-card__supporting-text center-child">
                         <div class="contact-responsive white-text">
+                            <p id="errormessage" style="color:red;"></p>
                             <p>Your Email: <input id="email" type="text" th:field="*{fromemail}" /></p>
                             <p id="error1" style="color:red;"></p>
                             <p id="error2" style="color:red;"></p>
@@ -81,8 +82,10 @@
             var val = value;
             if(!validateEmail(val)){
                 $("#error1").html("Invalid email address");
+                return false;
             }else{
                 $("#error1").html("");
+                return true;
             }
 
         }
@@ -124,7 +127,7 @@
 
 
         $("#message").on("keyup",function(){
-            validateContent(10,$(this).val(),$(this));
+            validateContent(255,$(this).val(),$(this));
         });
 
         function validateContent(max,value,element){
@@ -145,35 +148,33 @@
 
 
         $("#submit").click(function(){
-            alert($("#email").val()+" with \n"+$("#message").val());
-
-
+            if(!validateFromEmail($("#email").val())){
+                return false;
+            }
 
             $.ajax({
                 type: 'POST',
-                // make sure you respect the same origin policy with this url:
-                // http://en.wikipedia.org/wiki/Same_origin_policy
                 url: '/ajax/email',
                 data: {
                     'fromemail': $("#email").val(),
-                    'content': $("#message").val() // <-- the $ sign in the parameter name seems unusual, I would avoid it
+                    'content': $("#message").val()
                 },
                 success: function(msg){
                     var obj = JSON.parse(msg);
-                    alert('wow' + msg);
                     console.dir(msg);
                     console.dir(obj);
+                    $("#errormessage").html(obj.message);
+                    if(obj.success) {
+                        window.location = "/emailsuccess";
+                    }
 
                 },
                 error:function(msg){
-                    alert('damn! '+msg);
                     console.dir(msg);
-                    var message = "Error occurs here until I return a readable message";
-                    $("#errormessage").html(message);
+                    var obj = JSON.parse(msg);
+                    $("#errormessage").html(obj.message);
                 }
             });
-
-
               return false;
 
         });
