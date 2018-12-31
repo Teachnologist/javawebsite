@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="/fragment/heading.html :: heading"></div>
-<div th:fragment="contact">
+
 
 <body>
 <div th:fragment="contact">
@@ -19,6 +19,11 @@
         min-height: 250px;
         width: 100%;
         min-width: 360px;
+    }
+
+    #errormessage {
+        font-size: 11px;
+        font-color: red
     }
 
     .blue-background {
@@ -49,6 +54,8 @@
                     <div class="mdl-card__supporting-text center-child">
                         <div class="contact-responsive white-text">
                             <p>Your Email: <input id="email" type="text" th:field="*{fromemail}" /></p>
+                            <p id="error1" style="color:red;"></p>
+                            <p id="error2" style="color:red;"></p>
                             <p>Message: <textarea id="message" type="text" th:field="*{content}"></textarea></p>
                         </div>
                     </div>
@@ -65,8 +72,81 @@
 </main>
 <script>
     $(document).ready(function(){
+        $("#email").on("keyup",function(){
+            validateFromEmail($(this).val());
+
+        });
+
+        function validateFromEmail(value){
+            var val = value;
+            if(!validateEmail(val)){
+                $("#error1").html("Invalid email address");
+            }else{
+                $("#error1").html("");
+            }
+
+        }
+
+        function countRemainder(word,max){
+                if(word) {
+                    var wordlen = word.length;
+                    var remainder = parseInt(max) - wordlen;
+                    return remainder;
+                }else{
+                return parseInt(max);
+                }
+            }
+
+
+        function validateEmail(word){
+            if(word){
+                var wordlen = word.length;
+                var lastat = 0;
+                var lastperiod = 0;
+
+                for(var i=0;i<wordlen;i++){
+
+                lastat = (word[i] == "@") ? i:lastat;
+                    lastperiod = (word[i] == ".") ? i:lastperiod;
+                    console.log(lastat,lastperiod);
+                }
+
+                if(lastperiod > lastat+1){
+                    return true;
+                }
+
+
+            }
+                return false;
+
+
+        }
+
+
+        $("#message").on("keyup",function(){
+            validateContent(10,$(this).val());
+        });
+
+        function validateContent(max,value){
+            var val = value;
+            var max = max;
+            var remainder = countRemainder(val,max);
+            console.log("remainder "+remainder);
+            $("#error2").html(remainder+" of "+max+" words remaining");
+
+            if(remainder < 1) {
+                var counted = val.slice(0, max);
+                $(this).val(counted);
+                $("#error2").html("0 of " + max + " words remaining");
+            }
+
+        }
+
+
+
         $("#submit").click(function(){
             alert($("#email").val()+" with \n"+$("#message").val());
+
 
 
             $.ajax({
@@ -79,10 +159,17 @@
                     'content': $("#message").val() // <-- the $ sign in the parameter name seems unusual, I would avoid it
                 },
                 success: function(msg){
+                    var obj = JSON.parse(msg);
                     alert('wow' + msg);
+                    console.dir(msg);
+                    console.dir(obj);
+
                 },
                 error:function(msg){
                     alert('damn! '+msg);
+                    console.dir(msg);
+                    var message = "Error occurs here until I return a readable message";
+                    $("#errormessage").html(message);
                 }
             });
 

@@ -9,7 +9,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class Email {
     private String host = emailConfig.getHost();
     private Integer port = emailConfig.getPort();
 
-    @Size(min=10,max=50)
+    @Size(min=5,max=50)
     public String fromemail = "";
 
     public String getFromemail() {
@@ -66,42 +65,46 @@ public class Email {
         return message;
     }
 
-    public void sendEmail() {
+    public Boolean sendEmail() {
         System.out.println("HOST: "+host+" PORT: "+port);
 
             //create sender
+        try {
+            JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-
-        mailSender.setHost(host);
-        mailSender.setPort(port);
-        mailSender.setUsername(username);
-        mailSender.setPassword(password);
+            mailSender.setHost(host);
+            mailSender.setPort(port);
+            mailSender.setUsername(username);
+            mailSender.setPassword(password);
 
         /*use header properties; remmeber to tell GMAIL what domain this is sending from*/
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol","smtp");
-        props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.starttls.enable","true");
-        props.put("mail.debug","true");
+            Properties props = mailSender.getJavaMailProperties();
+            props.put("mail.transport.protocol", "smtp");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.debug", "true");
 
-        //create mail instance
-        SimpleMailMessage incomingmessage = new SimpleMailMessage();
-        incomingmessage.setFrom(fromemail);
-        incomingmessage.setTo(username);
-        incomingmessage.setSubject("Incoming Message");
-        incomingmessage.setText(incomingMessage(fromemail, content));
+            //create mail instance
+            SimpleMailMessage incomingmessage = new SimpleMailMessage();
+            incomingmessage.setFrom(fromemail);
+            incomingmessage.setTo(username);
+            incomingmessage.setSubject("Incoming Message");
+            incomingmessage.setText(incomingMessage(fromemail, content));
 
-        SimpleMailMessage outgoingmessage = new SimpleMailMessage();
-        outgoingmessage.setFrom(username);
-        outgoingmessage.setTo(fromemail);
-        outgoingmessage.setSubject("Thank you for contacting Jason Triche");
-        outgoingmessage.setText(outgoingMessage(content));
+            SimpleMailMessage outgoingmessage = new SimpleMailMessage();
+            outgoingmessage.setFrom(username);
+            outgoingmessage.setTo(fromemail);
+            outgoingmessage.setSubject("Thank you for contacting Jason Triche");
+            outgoingmessage.setText(outgoingMessage(content));
 
 
 //actually send it
-        mailSender.send(incomingmessage);
-        mailSender.send(outgoingmessage);
+            mailSender.send(incomingmessage);
+            mailSender.send(outgoingmessage);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
 
 
     }

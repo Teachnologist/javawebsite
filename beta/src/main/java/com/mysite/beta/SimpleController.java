@@ -9,13 +9,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
+import javax.validation.*;
+import org.json.JSONObject;
 
 @Controller
 @ComponentScan()
 public class SimpleController {
     @Value("${spring.application.name}")
     String appName;
+    private JSONObject outputJsonObj;
 
     @GetMapping("/")
     public String indexPage(Model model) {
@@ -57,11 +66,30 @@ public class SimpleController {
 
     }
 
-    @PostMapping("/ajax/email")
-    public String emailAjaxSubmit(@ModelAttribute Email email) {
-        System.out.println("AJAX POST URL /ajax/email");
-        email.sendEmail();
-        return "email sent";
+    @RequestMapping(value = "/ajax/email", method = RequestMethod.POST)
+    @ResponseBody
+    @Valid
+    public String emailAjaxSubmit(@Valid Email email, BindingResult result) {
+        JSONObject outputJsonObj = new JSONObject();
+        outputJsonObj.put("fromemail",email.fromemail);
+        outputJsonObj.put("content",email.content);
+        outputJsonObj.put("success",false);
+        outputJsonObj.put("message","Check for correct email and message format");
+
+
+        if(!result.hasErrors()){
+            Boolean sent = email.sendEmail();
+            if(!sent) {
+                outputJsonObj.put("message", "Error on send");
+            }else{
+                outputJsonObj.put("success",true);
+                outputJsonObj.put("message", "Message sent");
+            }
+
+            return outputJsonObj.toString();
+        }else{
+            return outputJsonObj.toString();
+        }
     }
 
     /**DEC 19**/
