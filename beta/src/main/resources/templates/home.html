@@ -1,6 +1,6 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="/fragment/heading.html :: heading">
+<head th:replace="fragment/heading::heading">
 </head>
 <body>
 <style>
@@ -30,18 +30,18 @@
     </div>
 
     <div class="mdl-tabs__panel is-active" id="home-panel">
-        <div th:insert="/fragment/home.html :: home">
+        <div th:insert="fragment/home::home">
     </div>
     </div>
     <div class="mdl-tabs__panel" id="about-panel">
-        <div th:insert="/fragment/about.html :: about">
+        <div th:insert="fragment/about::about">
     </div>
     </div>
     <div class="mdl-tabs__panel" id="contact-panel">
-        <div th:insert="/fragment/contact.html :: contact">
+        <div th:insert="fragment/contact::contact">
     </div>
     </div>
 </div>
-<div th:insert="/fragment/footer.html :: footer"></div>
+<div th:insert="fragment/footer::footer"></div>
 </body>
 </html>
