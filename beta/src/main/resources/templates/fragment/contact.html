@@ -12,18 +12,18 @@
     }
     #email{
         width: 100%;
-        min-width: 360px;
+        min-width: 240px;
     }
 
     #message {
-        min-height: 250px;
+        min-height: 240px;
         width: 100%;
-        min-width: 360px;
+        min-width: 240px;
     }
 
     #errormessage {
         font-size: 11px;
-        font-color: red
+        color: red
     }
 
     .blue-background {
@@ -135,31 +135,46 @@
             var max = max;
             var remainder = countRemainder(val,max);
             console.log("remainder "+remainder);
-            $("#error2").html(remainder+" of "+max+" words remaining");
+            $("#error2").html(remainder+" of "+max+" letters remaining");
 
             if(remainder < 1) {
                 var counted = val.slice(0, max);
                 element.val(counted);
-                $("#error2").html("0 of " + max + " words remaining");
+                $("#error2").html("0 of " + max + " letters remaining");
             }
 
         }
 
 
 
-        $("#submit").click(function(){
+        $("#submit").on("click touch",function(e){
             if(!validateFromEmail($("#email").val())){
                 return false;
             }
+
+            var fromemail = $("#email").val();
+            var content = $("#message").val();
+
+
+
+            $("#email").val("");
+            $("#message").val("");
+
+            $("#email").attr("disabled",true);
+            $("#message").attr("disabled",true);
+            $(this).attr("disabled",true);
+            $(this).css("color","red");
 
             $.ajax({
                 type: 'POST',
                 url: '/ajax/email',
                 data: {
-                    'fromemail': $("#email").val(),
-                    'content': $("#message").val()
+                    'fromemail': fromemail,
+                    'content': content
                 },
                 success: function(msg){
+                    fromemail = "";
+                    content = "";
                     var obj = JSON.parse(msg);
                     console.dir(msg);
                     console.dir(obj);
@@ -170,11 +185,14 @@
 
                 },
                 error:function(msg){
+                    fromemail = "";
+                    content = "";
                     console.dir(msg);
                     var obj = JSON.parse(msg);
                     $("#errormessage").html(obj.message);
                 }
             });
+            e.preventDefault();
               return false;
 
         });
