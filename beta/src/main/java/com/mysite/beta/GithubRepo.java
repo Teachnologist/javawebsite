@@ -5,6 +5,8 @@ public class GithubRepo {
     private String name;
     private String updated_at;
     private String languages_url;
+    private String repo_url;
+    private String git_url;
 
     protected void setName(String name) {
         this.name = name;

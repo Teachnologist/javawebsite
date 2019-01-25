@@ -2,25 +2,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment/heading::heading">
 </head>
+<style>
+
+
+.center-under-header {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+</style>
 <body>
 
-<div class="mdl-layout wrapper cover center-child">
+<main class="mdl-layout">
+<div th:insert="fragment/backheader::backheader"></div>
+<div class="center-under-header">
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+        <div class="fade-in">
+            <div class="mdl-card content-only center-child transparent" >
+                <div class="mdl-card__media center-child" id="github_card">
+                    <img class="img-responsive" th:src="${image_source}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+        <div class="fade-in">
+            <div class="mdl-card content-only center-child transparent" >
+                <div class="mdl-card__actions center-child">
+                    <a th:href="${github_page}" id="github_link" class="center-self js-link" target="_blank"><button class="github-button link-font" th:text="${username}"></button></a>
+                    <a th:href="${github_page}" id="github_link" class="center-self js-link" target="_blank"><button class="github-button link-font">View Repo</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="center-under-header">
     <table>
-        <th>
-        <td>REPO NAME</td>
-        <td>LAST UPDATE</td>
-        <td>GIT URL</td>
-        </th>
+        <thead>
+        <th>REPO NAME</th>
+        <th>LAST UPDATE</th>
+        </thead>
         <tbody>
         <tr th:each="repo:${repo_list}">
-            <td><p th:text="${repo.name}"></p></td>
+            <td><a href=""><p th:text="${repo.name}"></p></a></td>
             <td><p th:text="${repo.updated_at}"></p></td>
-            <!--<td><p th:text="${repo.git_url}"></p></td>-->
         </tr>
         </tbody>
 
     </table>
     </div>
+
+    <div th:insert="fragment/footer::footer"></div>
+</main>
 
 
 </body>

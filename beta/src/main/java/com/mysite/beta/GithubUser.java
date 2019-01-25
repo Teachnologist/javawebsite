@@ -7,6 +7,7 @@ public class GithubUser {
     private String url;
     private String repos_url;
     private String followers_url;
+    private String html_url;
 
 
     protected void setAvatar_url(String avatar_url) {
@@ -29,6 +30,10 @@ public class GithubUser {
         this.repos_url = repos_url;
     }
 
+    protected void setHtml_url(String html_url) {
+        this.html_url = html_url;
+    }
+
     public String getAvatar_url() {
         return avatar_url;
     }
@@ -47,5 +52,9 @@ public class GithubUser {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getHtml_url() {
+        return html_url;
     }
 }
