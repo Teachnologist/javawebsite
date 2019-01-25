@@ -19,6 +19,12 @@ import javax.validation.Valid;
 import javax.validation.*;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @ComponentScan()
 public class SimpleController {
@@ -43,6 +49,50 @@ public class SimpleController {
     public String homePage(Model model) {
         model.addAttribute("email", new Email());
         return "home";
+    }
+
+    @GetMapping("/github")
+    public String githubPage(Model model) {
+        Consumeapi apiClass = new Consumeapi();
+        System.out.print("a initial read\n");
+        GithubUser user = apiClass.getGithubJSON();
+        System.out.print(user.getLogin());
+        System.out.print("b initial read\n");
+        System.out.print(apiClass.getGithubREPOS(user.getRepos_url()));
+        System.out.print("d initial read\n");
+
+        List<GithubRepo> repos = apiClass.getGithubREPOS(user.getRepos_url());
+
+
+
+        //TODO: get the languages as part of a single object
+        Object[] repositories = repos.toArray();
+       List complete_list = new ArrayList();
+        for(int i = 0 ; i < repos.size(); i++){
+            GithubRepo repo = repos.get(i);
+            Map<String,Object> mMap = new HashMap();
+           /* <td><p th:text="${repo.name}"></p></td>
+            <td><p th:text="${repo.updated_at}"></p></td>
+            <td><p th:text="${repo.git_url}"></p></td>*/
+
+            mMap.put("name",repo.getName());
+            mMap.put("updated_at",repo.getUpdated_at());
+
+
+         //   mMap.put("languages",apiClass.getGithubREPOS(repo.getLanguages_url()));
+
+
+            complete_list.add(mMap);
+
+        }
+
+        System.out.print("map read\n");
+        System.out.print(complete_list);
+        model.addAttribute("repo_list", complete_list);
+        System.out.print("b map read\n");
+
+
+        return "github";
     }
 
     @GetMapping("/emailsuccess")

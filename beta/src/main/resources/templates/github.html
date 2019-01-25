@@ -1,0 +1,27 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/heading::heading">
+</head>
+<body>
+
+<div class="mdl-layout wrapper cover center-child">
+    <table>
+        <th>
+        <td>REPO NAME</td>
+        <td>LAST UPDATE</td>
+        <td>GIT URL</td>
+        </th>
+        <tbody>
+        <tr th:each="repo:${repo_list}">
+            <td><p th:text="${repo.name}"></p></td>
+            <td><p th:text="${repo.updated_at}"></p></td>
+            <!--<td><p th:text="${repo.git_url}"></p></td>-->
+        </tr>
+        </tbody>
+
+    </table>
+    </div>
+
+
+</body>
+</html>
