@@ -1,4 +1,4 @@
-package com.mysite.beta;
+package githubapi;
 
 public class GithubUser {
 

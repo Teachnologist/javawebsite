@@ -1,5 +1,6 @@
 package com.mysite.beta;
 
+import githubapi.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -11,21 +12,16 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
-import javax.validation.*;
+
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.lang.NoSuchFieldException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Controller
 @ComponentScan()
@@ -69,37 +65,30 @@ public class SimpleController {
         GithubRate rate = apiClass.getGithubRateLimit();
         System.out.print("a rate object\n");
 
-        Map parserate = rate.getRate();
-        Object test = apiClass.parseNestedMap(parserate);
-        Class<?> parsed = test.getClass();
+        GithubRateo parserate = rate.getRate();
+
+        model.addAttribute("limit", parserate.getLimit());
+        model.addAttribute("remaining", parserate.getRemaining());
+        model.addAttribute("reset", parserate.getReset());
+
+        Double percentage = 100*(parserate.getRemaining() / parserate.getLimit());
+        System.out.print("percentage"+ percentage);
+
+        Integer percentage_readable = (int) Math.round(percentage);
+
+        model.addAttribute("percentage", percentage);
+        model.addAttribute("percentage_readable", percentage_readable);
+
+
+        LocalDateTime dateTime = LocalDateTime.ofEpochSecond(parserate.getReset(), 0, ZoneOffset.UTC);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy h:mm a", Locale.ENGLISH);
+        String formattedDate = dateTime.format(formatter);
+
+        model.addAttribute("formatteddate", formattedDate);
+        System.out.print(parserate.getLimit());
 
 
 
-      /*  System.out.print("RATE OBJECT\n");
-        System.out.print(parserate);
-        System.out.print("RATE STRING\n");
-        System.out.print(parserate.toString());*/
-
-        try {
-            Field parsed_field = parsed.getField("limit");
-            System.out.print(parsed_field.toString());
-
-
-            System.out.print("IT WORKED\n");
-        }catch(Exception e){
-            System.out.print("EXCEPTION\n");
-            System.out.print(e);
-        }
-       /* Object parsed_rate = apiClass.parseNested(rate.getRate().toString());
-        Class<?> p_rate = parsed_rate.getClass();
-        System.out.print(rate.getRate());
-        try {
-            System.out.print(p_rate.getDeclaredField("limit"));
-        }catch(Exception e){
-            System.out.print("EXCEPTION\n");
-            System.out.print(e);
-
-        }*/
         System.out.print("b rate object\n");
 
 
@@ -110,8 +99,17 @@ public class SimpleController {
         System.out.print(repos.toString());
         System.out.print("d initial read\n");
 
+        Integer percentage_of_last_repo = 40;
 
+        Integer repo_size = (int) Math.round(repos.size()*(percentage_of_last_repo/100));
+        repos.sort((o1, o2) -> o2.getUpdated_at().compareTo(o1.getUpdated_at()));
+
+        for (int q=0;q<repos.size();q++){
+            System.out.print("EPOCH "+repos.get(q).getDate_epoch(repos.get(q).getUpdated_at())+"\n");
+
+        }
         System.out.print("map read\n");
+
         model.addAttribute("repo_list", repos);
         System.out.print("b map read\n");
 

@@ -1,20 +1,18 @@
-package com.mysite.beta;
-
-import java.util.Map;
+package githubapi;
 
 public class GithubRate {
     private Object resources;
-    private Map rate;
+    private GithubRateo rate;
 
     protected void setResources(Object resources) {
         this.resources = resources;
     }
 
-    protected void setRate(Map rate) {
+    protected void setRate(GithubRateo rate) {
         this.rate = rate;
     }
 
-    public Map getRate() {
+    public GithubRateo getRate() {
         return rate;
     }
 

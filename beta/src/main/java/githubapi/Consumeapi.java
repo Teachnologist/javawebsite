@@ -1,14 +1,15 @@
-package com.mysite.beta;
+package githubapi;
 
 /*import org.springframework.web.client.RestTemplate;*/
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import githubapi.GithubRate;
+import githubapi.GithubRepo;
+import githubapi.GithubUser;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 /*importt org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
