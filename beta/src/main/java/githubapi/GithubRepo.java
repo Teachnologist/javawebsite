@@ -2,6 +2,7 @@ package githubapi;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class GithubRepo {
 
@@ -12,7 +13,7 @@ public class GithubRepo {
     private String git_url;
     private String html_url;
     private String ssh_url;
-    private Integer date_epoch;
+    private Long date_epoch;
 
     protected void setName(String name) {
         this.name = name;
@@ -43,10 +44,33 @@ public class GithubRepo {
         }
     }
 
-    public Integer getDate_epoch(String updated_at) {
+    public Long getDate_epoch(String updated_at) {
 
-        setDate_epoch(updated_at);
-        return date_epoch;
+        String DateStr=updated_at;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        try {
+            Date d = sdf.parse(DateStr);
+            Long i = (d.getTime()/1000);
+            this.date_epoch = i;
+        }catch(Exception e){
+            this.date_epoch = null;
+        }
+        return this.date_epoch;
+    }
+
+    public Long getDateAsMilliseconds(String updated_at) {
+
+        String DateStr=updated_at;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Long milliseconds = null;
+        try {
+            Date d = sdf.parse(DateStr);
+            Long i = d.getTime();
+            milliseconds = i;
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        return milliseconds;
     }
 
     public String getName() {
@@ -55,6 +79,11 @@ public class GithubRepo {
 
     public String getUpdated_at() {
         return updated_at;
+    }
+
+    public Long convertDaystoMilliSeconds(Integer days){
+        Long milliseconds = TimeUnit.DAYS.toMillis(days);
+       return milliseconds;
     }
 
 

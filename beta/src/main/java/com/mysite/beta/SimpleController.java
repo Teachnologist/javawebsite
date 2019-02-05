@@ -105,7 +105,15 @@ public class SimpleController {
         repos.sort((o1, o2) -> o2.getUpdated_at().compareTo(o1.getUpdated_at()));
 
         for (int q=0;q<repos.size();q++){
-            System.out.print("EPOCH "+repos.get(q).getDate_epoch(repos.get(q).getUpdated_at())+"\n");
+            /*works - need to optimize, create a general function class*/
+            Long dayssince = repos.get(q).convertDaystoMilliSeconds(30);
+            Long repodate = repos.get(q).getDateAsMilliseconds(repos.get(q).getUpdated_at());
+
+            if((repodate) > new Date().getTime() - dayssince) {
+                System.out.print("SHOULD DISPLAY " + repos.get(q).getUpdated_at() + "\n");
+            }else{
+                System.out.print("NO DISPLAY " + repos.get(q).getUpdated_at() + "\n");
+            }
 
         }
         System.out.print("map read\n");
