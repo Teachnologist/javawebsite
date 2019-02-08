@@ -24,10 +24,23 @@
 <body>
 <div th:insert="fragment/backheader::backheader"></div>
 
-<main class="mdl-layout">
-
+<main class="mdl-layout" th:switch="${valid_user}">
 
     <div class="mdl-grid center-under-header">
+
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <div class="fade-in">
+                <select id="dayssince" name="daysSince" size="1">
+                    <option th:text="15" th:value="15"/>
+                    <option th:text="30" th:value="30"/>
+                    <option th:text="45" th:value="45"/>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:case="true" class="mdl-grid center-under-header">
 
     <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
         <div class="fade-in">
@@ -109,9 +122,9 @@
             </div>
         </div>
 
-
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-    <table>
+    <div th:switch="${has_repos}" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+        <h4 th:text="${message}"></h4>
+    <table th:case="true">
         <thead>
         <th>REPO NAME</th>
         <th>SSH</th>
@@ -127,9 +140,80 @@
 
     </table>
     </div>
+</div><!--end of true user-->
+        <div th:case="false" class="mdl-grid center-under-header">
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="fade-in">
+                    <div style="text-align: center;">Remaining Github Data Usage</div>
+                    <div style="width: 100%; height: 40px; border-top: solid; border-bottom: solid; border-width: thin; color:#CACCCE;">
+                        <div  style="background-color:#0077B5"
+                              th:style="'line-height: 40px; font-size: 32px; background-color:#0077B5; height: 100%;  width:'+ ${percentage}+'%'" th:text="${percentage_readable}+'%'"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="fade-in">
+                    <div class="mdl-card content-only center-child transparent" >
+                        <div class="mdl-card__actions center-child">
+                            <h4 th:text="${formatteddate}"></h4>
+
+                        </div>
+                        <div>
+                            Refresh Time
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="fade-in">
+                    <div class="mdl-card content-only center-child transparent" >
+                        <div class="mdl-card__actions center-child">
+                            <h4 th:text="${limit}"></h4>
+
+                        </div>
+                        <div>
+                            Limit
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="fade-in">
+                    <div class="mdl-card content-only center-child transparent" >
+                        <div class="mdl-card__actions center-child">
+                            <h4 th:text="${remaining}"></h4>
+
+                        </div>
+                        <div>
+                            Remaining
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <div class="fade-in">
+                    <div class="mdl-card content-only center-child transparent" >
+                        <div class="mdl-card__actions center-child">
+                            <h4>User Not Found</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div><!--end of null user-->
+
 
 
     </div><!--end of grid-->
+
 
 
 </main>

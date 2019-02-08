@@ -58,20 +58,7 @@ public class GithubRepo {
         return this.date_epoch;
     }
 
-    public Long getDateAsMilliseconds(String updated_at) {
 
-        String DateStr=updated_at;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        Long milliseconds = null;
-        try {
-            Date d = sdf.parse(DateStr);
-            Long i = d.getTime();
-            milliseconds = i;
-        }catch(Exception e){
-            System.out.print(e);
-        }
-        return milliseconds;
-    }
 
     public String getName() {
         return name;
@@ -81,10 +68,7 @@ public class GithubRepo {
         return updated_at;
     }
 
-    public Long convertDaystoMilliSeconds(Integer days){
-        Long milliseconds = TimeUnit.DAYS.toMillis(days);
-       return milliseconds;
-    }
+
 
 
 

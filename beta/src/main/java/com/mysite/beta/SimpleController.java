@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 import org.json.JSONObject;
+import triche.date.methods.General;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -52,16 +53,6 @@ public class SimpleController {
     @GetMapping("/github")
     public String githubPage(Model model) {
         Consumeapi apiClass = new Consumeapi();
-        System.out.print("a initial read\n");
-        GithubUser user = apiClass.getGithubJSON();
-        System.out.print(user.getLogin());
-
-
-        model.addAttribute("username", user.getLogin());
-        model.addAttribute("image_source", user.getAvatar_url());
-        model.addAttribute("github_page", user.getHtml_url());
-
-
         GithubRate rate = apiClass.getGithubRateLimit();
         System.out.print("a rate object\n");
 
@@ -71,8 +62,8 @@ public class SimpleController {
         model.addAttribute("remaining", parserate.getRemaining());
         model.addAttribute("reset", parserate.getReset());
 
-        Double percentage = 100*(parserate.getRemaining() / parserate.getLimit());
-        System.out.print("percentage"+ percentage);
+        Double percentage = 100 * (parserate.getRemaining() / parserate.getLimit());
+        System.out.print("percentage" + percentage);
 
         Integer percentage_readable = (int) Math.round(percentage);
 
@@ -88,38 +79,51 @@ public class SimpleController {
         System.out.print(parserate.getLimit());
 
 
-
         System.out.print("b rate object\n");
 
+        System.out.print("a initial read\n");
+        GithubUser user = apiClass.getGithubJSON("teachnologist");
 
 
-        List<GithubRepo> repos = apiClass.getGithubREPOS(user.getRepos_url());
 
-        System.out.print("b initial read\n");
-        System.out.print(repos.toString());
-        System.out.print("d initial read\n");
+        Boolean valid_user = false;
 
-        Integer percentage_of_last_repo = 40;
 
-        Integer repo_size = (int) Math.round(repos.size()*(percentage_of_last_repo/100));
-        repos.sort((o1, o2) -> o2.getUpdated_at().compareTo(o1.getUpdated_at()));
+        if(user != null) {
+            System.out.print(user.getLogin());
 
-        for (int q=0;q<repos.size();q++){
-            /*works - need to optimize, create a general function class*/
-            Long dayssince = repos.get(q).convertDaystoMilliSeconds(30);
-            Long repodate = repos.get(q).getDateAsMilliseconds(repos.get(q).getUpdated_at());
 
-            if((repodate) > new Date().getTime() - dayssince) {
-                System.out.print("SHOULD DISPLAY " + repos.get(q).getUpdated_at() + "\n");
-            }else{
-                System.out.print("NO DISPLAY " + repos.get(q).getUpdated_at() + "\n");
+            model.addAttribute("username", user.getLogin());
+            model.addAttribute("image_source", user.getAvatar_url());
+            model.addAttribute("github_page", user.getHtml_url());
+
+
+            List repos = apiClass.getDescendingSortedandFilteredbyDateRepos(new Date(), 0, user.getRepos_url().toString());
+
+            System.out.print("b initial read\n");
+            System.out.print(repos.toString());
+            System.out.print("d initial read\n");
+
+
+            System.out.println("begin loop");
+
+            System.out.print("map read\n");
+
+            Integer reposize = repos.size();
+            String message = "There are " + reposize + " repositories available";
+            Boolean has_repos = false;
+            if (reposize > 0) {
+                has_repos = true;
+                model.addAttribute("repo_list", repos);
             }
+            model.addAttribute("message", message);
+            model.addAttribute("has_repos", has_repos);
 
+            System.out.print("b map read\n");
+            valid_user = true;
         }
-        System.out.print("map read\n");
 
-        model.addAttribute("repo_list", repos);
-        System.out.print("b map read\n");
+        model.addAttribute("valid_user", valid_user);
 
 
         return "github";
