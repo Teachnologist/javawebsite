@@ -35,7 +35,7 @@ public class GithubRepo {
 
     protected void setDate_epoch(String updated_at) {
         String DateStr=updated_at;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-m-d'T'HH:mm:ss'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d'T'HH:mm:ss'Z'");
         try {
             Date d = sdf.parse(DateStr);
             this.date_epoch = date_epoch;
@@ -47,7 +47,7 @@ public class GithubRepo {
     public Long getDate_epoch(String updated_at) {
 
         String DateStr=updated_at;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-m-d'T'HH:mm:ss'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d'T'HH:mm:ss'Z'");
         try {
             Date d = sdf.parse(DateStr);
             Long i = (d.getTime()/1000);
@@ -67,9 +67,6 @@ public class GithubRepo {
     public String getUpdated_at() {
         return updated_at;
     }
-
-
-
 
 
     public String getLanguages_url() {
