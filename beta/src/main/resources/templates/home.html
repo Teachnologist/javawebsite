@@ -1,9 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head><title>Home Page</title></head>
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/heading::heading">
+</head>
 <body>
-<h1>Hello !</h1>
-<p>Welcome to <span th:text="${appName}">Our App</span></p>
-<a href="/two" th:href="@{/two}" class="btn btn-large btn-info">2</a>
+<style>
+    .mdl-tabs__tab {
+        color: #0077B5 !important;
+
+    }
+
+    .mdl-tabs__tab:hover {
+        color: #86888A !important;
+    }
+
+    .mdl-tabs__tab:active {
+        color: #86888A !important;
+    }
+
+    .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after{
+        background: #86888A !important;
+    }
+
+</style>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#home-panel" id="tab1" class="mdl-tabs__tab is-active">HOME</a>
+        <a href="#about-panel" id="tab2" class="mdl-tabs__tab">ABOUT</a>
+        <a href="#contact-panel" id="tab3" class="mdl-tabs__tab">CONTACT</a>
+    </div>
+
+    <div class="mdl-tabs__panel is-active" id="home-panel">
+        <div th:insert="fragment/home::home">
+    </div>
+    </div>
+    <div class="mdl-tabs__panel" id="about-panel">
+        <div th:insert="fragment/about::about">
+    </div>
+    </div>
+    <div class="mdl-tabs__panel" id="contact-panel">
+        <div th:insert="fragment/contact::contact">
+    </div>
+    </div>
+</div>
+<div th:insert="fragment/footer::footer"></div>
 </body>
 </html>

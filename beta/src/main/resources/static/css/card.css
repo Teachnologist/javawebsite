@@ -1,0 +1,12 @@
+
+.contact-card.mdl-card {
+    width: 512px;
+}
+.contact-card > .mdl-card__title {
+    color: #fff;
+    background: red;
+    text-align:center;
+}
+.contact-card > .mdl-card__menu {
+    color: #fff;
+}

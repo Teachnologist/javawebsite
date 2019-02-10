@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/heading::heading">
+<div th:fragment="backheader">
+    <style>
+        .blue-text {
+            color: #0077B5 !important;
+            background-color: inherit;
+            border-color: #0077B5 !important;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+
+        }
+
+
+    </style>
+
+    <div  id="backheader" class="mdl-layout--fixed-header">
+        <header th:fragment="backheader" class="mdl-layout__header">
+            <div class="mdl-layout__header-row" style="background-color: #0077B5; color:#ffffff;">
+                <a href="/home"><i class="material-icons">
+                    keyboard_backspace
+                </i>
+                </a>
+                <!-- Title -->
+                <span style="margin: 0 auto;" class="mdl-layout-title"><a href="/home">Back</a></span>
+
+                <!-- Add spacer, to align navigation to the right -->
+
+            </div>
+        </header>
+    </div>
+
+</div>
+</body>
+</html>

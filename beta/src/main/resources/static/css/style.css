@@ -50,6 +50,8 @@ body {
     background-color:blue;
 }
 
+
+
 .red{
     background-color:red;
 }
@@ -78,25 +80,14 @@ body {
     height: 33%;
 }
 
-@font-face {
-    font-family: 'Tangerine';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/SansForgetica-Regular.otf") format("opentype");
+
+.link-font {
+    font-family: 'Avenirblack','sans-serif';
 }
 
-@font-face {
-    font-family: 'Space';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/spaceage.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Rebel';
-    font-style: normal;
-    font-weight: normal;
-    src: url("/resources/fonts/Rebellion.otf") format("opentype");
+.minortitle-font {
+    font-family: 'Avenirblack','sans-serif';
+    font-size: 36px;
 }
 
 .title-font{
@@ -219,6 +210,47 @@ body {
 }
 
 .mdl-cell{
-    border:solid;
-    border-color:blue;
+    border:none;
+    border-color:green;
 }
+
+/***DEC 19***/
+.contact-card{
+    background-color:cornflowerblue;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.contact-responsive {
+    max-width: 100%;
+    width:auto;
+    height: auto;
+    display: block;
+    max-height: 260px;
+}
+
+.no-vertical-wrapper {
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+}
+
+.LI-badge-container {
+    width:100% !important;
+}
+
+.active-block {
+    display:inherit;
+}
+
+.inactive-block {
+    display:none;
+}
+
+.immutable-block {
+    display:inherit;
+}
+
+

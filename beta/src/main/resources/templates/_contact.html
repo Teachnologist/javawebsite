@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div th:insert="/fragment/heading.html :: heading"></div>
+<script>
+    $(document).ready(function(){
+        alert("jquery on");
+        $("#submit").click(function(){
+           alert($("#email").val()+" with \n"+$("#message").val());
+          //  return false
+        });
+    });
+
+</script>
+<body>
+<div th:insert="/fragment/header.html :: header"></div>
+<main class="mdl-layout mdl-layout__content wrapper change-color blue-background">
+    <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__media white-text">
+                    <div class="center-text minortitle-font">Contact Me</div>
+                <form action="#" th:action="@{/index}" th:object="${email}" method="post">
+                <div class="mdl-card__supporting-text center-child">
+                    <div class="contact-responsive white-text">
+                    <p>Your Email: <input id="email" type="text" th:field="*{fromemail}" /></p>
+                        <p>Message: <textarea id="message" type="text" th:field="*{content}"></textarea></p>
+                    </div>
+                </div>
+                <div class="mdl-card__actions center-child">
+                    <p><input type="submit" value="Submit" id="submit" class="submit-button" /></p>
+                </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+<style>
+    .center-text {
+        margin: 0 auto;
+        text-align: center;
+    }
+    #email{
+        width: 100%;
+        min-width: 360px;
+    }
+
+    #message {
+        min-height: 250px;
+        width: 100%;
+        min-width: 360px;
+    }
+
+    .blue-background {
+
+        background-color: #0077B5 !important;
+    }
+
+    .blue-text {
+         color: #0077B5 !important;
+         background-color: inherit;
+         border-color: #0077B5 !important;
+     }
+
+    .white-text {
+        color: #ffffff !important;
+        background-color: inherit;
+        border-color: #ffffff !important;
+    }
+
+</style>
+</body>
+</html>

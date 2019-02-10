@@ -1,0 +1,205 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/heading::heading">
+
+
+<body>
+<div th:fragment="contact">
+<style>
+    .center-text {
+        margin: 0 auto;
+        text-align: center;
+    }
+    #email{
+        width: 100%;
+        min-width: 240px;
+    }
+
+    #message {
+        min-height: 240px;
+        width: 100%;
+        min-width: 240px;
+    }
+
+    #errormessage {
+        font-size: 11px;
+        color: red
+    }
+
+    .blue-background {
+
+        background-color: #0077B5 !important;
+    }
+
+    .blue-text {
+        color: #0077B5 !important;
+        background-color: inherit;
+        border-color: #0077B5 !important;
+    }
+
+    .white-text {
+        color: #ffffff !important;
+        background-color: inherit;
+        border-color: #ffffff !important;
+    }
+
+</style>
+<main class="mdl-layout mdl-layout__content wrapper change-color blue-background">
+    <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media white-text">
+                <div class="center-text minortitle-font">CONTACT</div>
+                <form action="#" th:action="@{/email}" th:object="${email}" method="post">
+                    <div class="mdl-card__supporting-text center-child">
+                        <div class="contact-responsive white-text">
+                            <p id="errormessage" style="color:red;"></p>
+                            <p>Your Email: <input id="email" type="text" th:field="*{fromemail}" /></p>
+                            <p id="error1" style="color:red;"></p>
+                            <p id="error2" style="color:red;"></p>
+                            <p>Message: <textarea id="message" type="text" th:field="*{content}"></textarea></p>
+                        </div>
+                    </div>
+                    <div class="mdl-card__actions center-child">
+                        <p><input type="submit" value="Submit" id="submit" class="submit-button" /></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+<script>
+    $(document).ready(function(){
+        $("#email").on("keyup",function(){
+            validateFromEmail($(this).val());
+
+        });
+
+        function validateFromEmail(value){
+            var val = value;
+            if(!validateEmail(val)){
+                $("#error1").html("Invalid email address");
+                return false;
+            }else{
+                $("#error1").html("");
+                return true;
+            }
+
+        }
+
+        function countRemainder(word,max){
+                if(word) {
+                    var wordlen = word.length;
+                    var remainder = parseInt(max) - wordlen;
+                    return remainder;
+                }else{
+                return parseInt(max);
+                }
+            }
+
+
+        function validateEmail(word){
+            if(word){
+                var wordlen = word.length;
+                var lastat = 0;
+                var lastperiod = 0;
+
+                for(var i=0;i<wordlen;i++){
+
+                lastat = (word[i] == "@") ? i:lastat;
+                    lastperiod = (word[i] == ".") ? i:lastperiod;
+                    console.log(lastat,lastperiod);
+                }
+
+                if(lastperiod > lastat+1){
+                    return true;
+                }
+
+
+            }
+                return false;
+
+
+        }
+
+
+        $("#message").on("keyup",function(){
+            validateContent(255,$(this).val(),$(this));
+        });
+
+        function validateContent(max,value,element){
+            var val = value;
+            var max = max;
+            var remainder = countRemainder(val,max);
+            console.log("remainder "+remainder);
+            $("#error2").html(remainder+" of "+max+" letters remaining");
+
+            if(remainder < 1) {
+                var counted = val.slice(0, max);
+                element.val(counted);
+                $("#error2").html("0 of " + max + " letters remaining");
+            }
+
+        }
+
+
+
+        $("#submit").on("click touch",function(e){
+            if(!validateFromEmail($("#email").val())){
+                return false;
+            }
+
+            var fromemail = $("#email").val();
+            var content = $("#message").val();
+
+
+
+            $("#email").val("");
+            $("#message").val("");
+
+            $("#email").attr("disabled",true);
+            $("#message").attr("disabled",true);
+            $(this).attr("disabled",true);
+            $(this).css("color","red");
+
+            $.ajax({
+                type: 'POST',
+                url: '/ajax/email',
+                data: {
+                    'fromemail': fromemail,
+                    'content': content
+                },
+                success: function(msg){
+                    fromemail = "";
+                    content = "";
+                    var obj = JSON.parse(msg);
+                    console.dir(msg);
+                    console.dir(obj);
+                    $("#errormessage").html(obj.message);
+                    if(obj.success) {
+                        window.location = "/emailsuccess";
+                    }
+
+                },
+                error:function(msg){
+                    fromemail = "";
+                    content = "";
+                    console.dir(msg);
+                    var obj = JSON.parse(msg);
+                    $("#errormessage").html(obj.message);
+                }
+            });
+            e.preventDefault();
+              return false;
+
+        });
+    });
+
+</script>
+
+</div>
+</body>
+</html>

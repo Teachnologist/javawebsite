@@ -1,0 +1,102 @@
+.submit-button {
+    border: thin;
+    background-color: inherit;
+    color: #ffffff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-height: 50px;
+    line-height: 50px;
+    font-family: 'Avenirblack','sans-serif';
+    min-width: 200px;
+    font-size: 30px;
+    font-weight: 100;
+    padding: 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    color: #CACCCE;
+    text-decoration: none;
+}
+
+
+.github-button {
+    border: none;
+    background-color: inherit;
+    color: #0077B5;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-height: 50px;
+    line-height: 50px;
+    font-family: 'Avenirblack','sans-serif';
+    min-width: 200px;
+    font-size: 30px;
+    font-weight: 100;
+    padding: 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.github-button:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+
+
+.email-button {
+    border: none;
+    color: #0077B5;
+    background-color: inherit;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-height: 50px;
+    line-height: 50px;
+    font-family: 'Avenirblack','sans-serif';
+    min-width: 200px;
+    font-size: 30px;
+    font-weight: 100;
+    padding: 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.email-button:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+
+.linkedin-button {
+    border: none;
+    background-color: inherit;
+    color: #0077B5;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-height: 50px;
+    line-height: 50px;
+    font-family: 'Avenirblack','sans-serif';
+    min-width: 200px;
+    font-size: 30px;
+    font-weight: 100;
+    padding: 0px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.linkedin-button:hover {
+    color: #d0d0d0;
+    text-decoration: none;
+}
+

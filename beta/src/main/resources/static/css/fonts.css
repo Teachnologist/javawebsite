@@ -1,0 +1,68 @@
+.space{
+    font-family: 'Space','sans-serif';
+}
+
+.tangerine{
+    font-family: 'Tangerine','sans-serif';
+}
+
+.rebel{
+    font-family: 'Rebel','sans-serif';
+}
+
+.avenir{
+    font-family: 'Avenirblack','sans-serif';
+}
+
+.ibm{
+    font-family: 'IBM','sans-serif';
+}
+
+@font-face {
+    font-family: 'Tangerine';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/SansForgetica-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Space';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/spaceage.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Rebel';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/Rebellion.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'IBM';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/IBM-Logo.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Avenirblack';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/AvenirLTStd-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'ProximaNovaLight';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/FontsFree-Net-Proxima-Nova-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Digital';
+    font-style: normal;
+    font-weight: normal;
+    src: url("/resources/fonts/IntellectaDigital.otf") format("opentype");
+}

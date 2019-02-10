@@ -1,215 +1,272 @@
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Material Design</title>
-    <script src="/jquery/jquery.js"></script>
-    <script src="/mdl/material.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/mdl/material.min.css"
-          th:href="@{/mdl/material.min.css}">
-
-
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/resources/css/style.css"
-          th:href="@{/resources/css/style.css}"/>
-
-
+<head th:replace="fragment/heading::heading">
 </head>
+<body>
+
+<div class="mdl-layout wrapper cover center-child">
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <p style="" id="walking-title" class="opaque-7 intro-words">WELCOME TO</p>
+        </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+            <h1 class="title-font title-font-tablet fade-in" id="title">JASON TRICHE</h1>
+            </div>
+
+
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
+                    <a href="/home"><button class="welcome-button button-animate">Begin</button></a>
+                </div>
+
+
+        </div>
+    </div>
+
+
+</body>
 <script>
     $(document).ready(function(){
-        alert("jquery on");
+        var title = "Welcome to";
+        var name = "JASON TRICHE";
+
+
+        $("#walking-title").html("");
+        $("#title").css("opacity",0.1);
+        $(".welcome-button").css("opacity",0.1);
+        $(".welcome-button").removeClass("button-animate");
+
+        var wordarray = title.split("");
+
+        walkWord(wordarray,500,0);
+
+        function addName(){
+            $("#title").html(name);
+            $("#title").animate({opacity: 1},"slow");
+        }
+
+        function pulsateButton(){
+            $(".welcome-button").animate({opacity: 0.7},"slow");
+            $(".welcome-button").addClass("button-animate");
+
+        }
+
+
+        function walkWord(wordarray,time,index){
+console.dir(wordarray);
+            setTimeout(function() {
+
+
+                var i = parseInt(index);
+                if(wordarray.length - 1 === i){
+                    addName();
+                    pulsateButton();
+                    printLetter(wordarray[i]);
+                    return false;
+                }
+
+                console.dir(wordarray[i]);
+
+                printLetter(wordarray[i]);
+                i++;
+
+console.log(i);
+                walkWord(wordarray,time,i);
+            }, time);
+
+
+        }
+
+        function printLetter(letter){
+
+            $("#walking-title").append(letter);
+            return false;
+
+        }
+
+
+
+
+
+        var content = {};
+
+    /*    (function() {
+
+            'use strict';
+            var dialog = document.querySelector('#modal-example');
+            var closeButton = dialog.querySelector('button');
+            var showButton = document.querySelector('#show-modal-example');
+            if (! dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
+            var closeClickHandler = function(event) {
+                dialog.close();
+            };
+            var showClickHandler = function(event) {
+                dialog.showModal();
+            };
+            showButton.addEventListener('click', showClickHandler);
+            closeButton.addEventListener('click', closeClickHandler);
+        }());*/
+
+        preloadModal();
+
+    function preloadModal(){
+        $("#modal-content").load('/resources/jqtemplates/linkedin.html #linkedin_card',function(){
+            content["linkedin_link"]= $(this).html();
+
+        });
+
+    }
+
+
+        $("#linkedin_link").click(function(){
+            alert($(".modal-trigger").css("display"));
+           if($(".modal-trigger").css("display") != "none"){
+               hideModal(".modal-trigger");
+           }else{
+
+               loadLI();
+
+           }
+
+        });
+
+        function loadLI(){
+            alert(content["linkedin_link"]);
+            $("#modal-content").html(content["linkedin_link"]);
+        }
+
+        $("#github_link").click(function(){
+            alert($(".modal-trigger").css("display"));
+            if($(".modal-trigger").css("display") != "none"){
+                hideModal(".modal-trigger");
+            }else{
+                showModal(".modal-trigger");
+                getGithubCard("#modal-content");
+            }
+
+        });
+
+
+
+        function hideModal(selector){
+            $(".cancel").off();
+            $(".action").off();
+            $(selector).css("display","none");
+
+            return false;
+        }
+
+        function showModal(selector,content_html){
+
+            $(selector).css("display","block");
+
+            $("#modal-content").html(content_html);
+
+            $(".cancel").click(function() {
+                alert(selector);
+                hideModal(selector);
+                return false;
+            });
+
+
+            $(".action").click(function() {
+                alert("something happens!");
+                alert(selector);
+                return false;
+            });
+
+        }
+
+
+
+     //   $("#contact_form").css("display","none");
+        getForm();
+
+        $(".nojs-link").attr("href","#");
+        $(".nojs-link").removeAttr('target');
+
+
+
+
+        $("#contact_link").click(function(){
+            if($("#contact_form").css("display") != "none"){
+                hideForm();
+        }else{
+                showForm();
+        }
+        });
+
+
+
+
+      /*  $("#linkedin_link").click(function(){
+            alert(2);
+            getLinkedInBadge();
+            return false;
+        });
+*/
+
+        function getGithubCard(selector){
+            var widget = new GitHubCard({
+                username: 'TEACHNOLOGIST',
+                template: selector,
+                sortBy: 'updateTime',
+                reposHeaderText: 'Active Repos',
+                maxRepos: 3
+            });
+
+            widget.init();
+            console.log("initialized - possibly has to be loaded while window loads");
+
+
+            return false;
+        }
+
+        function getLinkedInBadge(){
+            $("#display_window").load('/resources/jqtemplates/linkedin.html #linkedin_card');
+
+        }
+
+        function getForm() {
+            hideForm();
+            $("#contact_form").load('/resources/jqtemplates/contact.html #form_card', function () {
+
+                $("#submit").click(function () {
+
+                    alert($("#fromemail").val());
+                    hideForm();
+                    return false;
+                });
+
+                $("#cancel").click(function () {
+                    hideForm();
+                    return false;
+                });
+
+            });
+        }
+
+        function hideForm(){
+
+            $("#contact_form").css("display","none");
+
+        }
+
+        function showForm(){
+
+            $("#contact_form").css("display","block");
+
+        }
+
     });
 
 </script>
-<body>
-
-
-
-<div class="mdl-layout wrapper change-color">
-    <div class="mdl-grid">
-
-          <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="marquee-font bold-text fade-out">Welcome!</h1></div>
-
-
-        <div class="mdl-cell mdl-cell--12-col center-child"><h1 class="title-font grey-text bold-text fade-in">Jason Triche</h1></div>
-        <div class="mdl-cell mdl-cell--12-col center-child"><h2 class="orange-text italic-text subtitle-font remove-padding slide-in">Good Work</h2></div>
-
-        <h1>Form</h1>
-        <form action="#" th:action="@{/index}" th:object="${email}" method="post">
-            <p>Id: <input type="text" th:field="*{email}" /></p>
-            <p>Message: <input type="text" th:field="*{content}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
-        <h1>Result</h1>
-        <p th:text="'id: ' + ${email.email}" />
-        <p th:text="'content: ' + ${email.content}" />
-        <a href="/greeting">Submit another message</a>
-
-
-        <!--
-        <div class="mdl-cell mdl-cell--6-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--6-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
--->
-        <div class="mdl-cell mdl-cell--4-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/email_logo.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>Contact Me</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child transparent">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/linkedin_logo.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my profile</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-card content-only center-child transparent">
-            <div class="mdl-card__media">
-                <img class="img-responsive" src="/resources/images/linkedin_logo.png">
-            </div>
-            <div class="mdl-card__supporting-text center-child">
-                <p>View my profile</p>
-            </div>
-            <div class="mdl-card__actions center-child">
-                <a href="https://www.github.com/teachnologist" class="center-self orange-text">View My Repo</a>
-            </div>
-        </div>
-
-
-
-        <!--4 booxes-->
-<!--
-        <div class="mdl-cell mdl-cell--3-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col center-child">
-            <div class="fade-in">
-                <div class="mdl-card content-only center-child">
-                    <div class="mdl-card__media">
-                        <img class="img-responsive" src="/resources/images/GitHub-Mark-120px-plus.png">
-                    </div>
-                    <div class="mdl-card__supporting-text center-child">
-                        <p>View my public repo at Github</p>
-                    </div>
-                    <div class="mdl-card__actions center-child">
-                        <a href="https://www.github.com/teachnologist" class="center-self">View My Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
--->
-    </div>
-</div>
-</body>
+<style>
+    .LI-badge-container {
+        height:100% !important;
+        width:100% !important;
+    }
+</style>
 </html>
