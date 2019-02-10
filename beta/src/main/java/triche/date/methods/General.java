@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class General {
 
-    final private String date_format = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    final private String date_format = "yyyy-m-d'T'HH:mm:ss'Z'";
 
     public Long convertDaystoMilliSeconds(Integer days){
         Long milliseconds = TimeUnit.DAYS.toMillis(days);

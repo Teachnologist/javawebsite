@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import githubapi.GithubRate;
 import githubapi.GithubRepo;
 import githubapi.GithubUser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 import triche.date.methods.General;
 
@@ -24,6 +25,7 @@ import java.util.*;
 public class Consumeapi {
 
     final String url_prefix = "https://api.github.com/users/";
+
     final String rate_uri = "https://api.github.com/rate_limit";
 
     public GithubUser getGithubJSON(String username){
@@ -91,7 +93,7 @@ public class Consumeapi {
         return result;
     }
 
-    public List<GithubRepo> getGithubREPOS(String repo_url){
+    private List<GithubRepo> getGithubREPOS(String repo_url){
         RestTemplate restTemplate = new RestTemplate();
         String jsonString = restTemplate.getForObject(repo_url, String.class);
         ObjectMapper mapper = new ObjectMapper();
@@ -116,9 +118,7 @@ public class Consumeapi {
         List<GithubRepo> repos = getGithubREPOS(repo_url);
         repos.sort((o1, o2) -> o2.getUpdated_at().compareTo(o1.getUpdated_at()));
 
-        List<Map<String,String>> repoarray = new ArrayList();
-
-
+        List<Map<String,String>> repoarray = new ArrayList<Map<String,String>>();
 
         General tmethods = new General();
 

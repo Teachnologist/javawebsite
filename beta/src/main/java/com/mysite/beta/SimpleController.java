@@ -5,15 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 import org.json.JSONObject;
@@ -29,6 +23,13 @@ import java.util.*;
 public class SimpleController {
     @Value("${spring.application.name}")
     String appName;
+
+    @Value("${api.github.username}")
+    String githubusername;
+
+    @Value("${api.github.dayshistory}")
+    Integer dayshistory;
+
     private JSONObject outputJsonObj;
 
     @GetMapping("/")
@@ -50,8 +51,11 @@ public class SimpleController {
         return "home";
     }
 
-    @GetMapping("/github")
+    @RequestMapping(value="/github", method={RequestMethod.GET})
     public String githubPage(Model model) {
+
+
+
         Consumeapi apiClass = new Consumeapi();
         GithubRate rate = apiClass.getGithubRateLimit();
         System.out.print("a rate object\n");
@@ -72,7 +76,7 @@ public class SimpleController {
 
 
         LocalDateTime dateTime = LocalDateTime.ofEpochSecond(parserate.getReset(), 0, ZoneOffset.UTC);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yyyy h:mm a", Locale.ENGLISH);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M-d-yyyy h:mm a", Locale.ENGLISH);
         String formattedDate = dateTime.format(formatter);
 
         model.addAttribute("formatteddate", formattedDate);
@@ -82,7 +86,8 @@ public class SimpleController {
         System.out.print("b rate object\n");
 
         System.out.print("a initial read\n");
-        GithubUser user = apiClass.getGithubJSON("teachnologist");
+
+        GithubUser user = apiClass.getGithubJSON(githubusername);
 
 
 
@@ -98,7 +103,7 @@ public class SimpleController {
             model.addAttribute("github_page", user.getHtml_url());
 
 
-            List repos = apiClass.getDescendingSortedandFilteredbyDateRepos(new Date(), 0, user.getRepos_url().toString());
+            List repos = apiClass.getDescendingSortedandFilteredbyDateRepos(new Date(), dayshistory, user.getRepos_url().toString());
 
             System.out.print("b initial read\n");
             System.out.print(repos.toString());
@@ -111,12 +116,14 @@ public class SimpleController {
 
             Integer reposize = repos.size();
             String message = "There are " + reposize + " repositories available";
+            String submessage =        "Updated within the last "+dayshistory+" days";
             Boolean has_repos = false;
             if (reposize > 0) {
                 has_repos = true;
                 model.addAttribute("repo_list", repos);
             }
             model.addAttribute("message", message);
+            model.addAttribute("submessage", submessage);
             model.addAttribute("has_repos", has_repos);
 
             System.out.print("b map read\n");

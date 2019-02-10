@@ -26,19 +26,6 @@
 
 <main class="mdl-layout" th:switch="${valid_user}">
 
-    <div class="mdl-grid center-under-header">
-
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-            <div class="fade-in">
-                <select id="dayssince" name="daysSince" size="1">
-                    <option th:text="15" th:value="15"/>
-                    <option th:text="30" th:value="30"/>
-                    <option th:text="45" th:value="45"/>
-                </select>
-            </div>
-        </div>
-    </div>
-
 
     <div th:case="true" class="mdl-grid center-under-header">
 
@@ -122,8 +109,10 @@
             </div>
         </div>
 
-    <div th:switch="${has_repos}" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone center-child">
-        <h4 th:text="${message}"></h4>
+    <div th:switch="${has_repos}" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <div class="center-child"><h4 style="margin:0 auto;" th:text="${message}"></h4></div>
+        <div class="center-child"><p style="margin:0 auto; font-style: italic;" th:text="${submessage}"></p></div>
+<div class="center-child">
     <table th:case="true">
         <thead>
         <th>REPO NAME</th>
@@ -139,6 +128,7 @@
         </tbody>
 
     </table>
+</div>
     </div>
 </div><!--end of true user-->
         <div th:case="false" class="mdl-grid center-under-header">
