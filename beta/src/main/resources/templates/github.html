@@ -3,6 +3,30 @@
 <head th:replace="fragment/heading::heading">
 </head>
 <style>
+    .full-width{
+        width:100%;
+        overflow-x: auto;
+    }
+
+    .mdl-data-table {
+        table-layout: fixed;
+    }
+
+    .responsive-cell{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+    }
+
+    @media (max-width: 1200px){
+
+        .disappear-on-small{
+            display:none;
+        }
+
+
+    }
 
 
 .center-under-header {
@@ -32,7 +56,7 @@
     <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
         <div class="fade-in">
             <div class="mdl-card content-only center-child transparent" >
-                <div class="mdl-card__media center-child" id="">
+                <div class="mdl-card__media center-child" >
                     <img class="img-responsive" th:src="${image_source}" />
                 </div>
             </div>
@@ -44,7 +68,7 @@
             <div class="fade-in">
                 <div class="mdl-card content-only center-child transparent" >
                     <div class="mdl-card__actions center-child">
-                        <div><a th:href="${github_page}" id="" class="center-self js-link" target="_blank">
+                        <div><a th:href="${github_page}" class="center-self js-link" target="_blank">
                             <button class="github-button link-font" th:text="${username}"></button></a>
                         </div>
 
@@ -113,17 +137,17 @@
         <div class="center-child"><h4 style="margin:0 auto;" th:text="${message}"></h4></div>
         <div class="center-child"><p style="margin:0 auto; font-style: italic;" th:text="${submessage}"></p></div>
 <div class="center-child">
-    <table th:case="true">
+    <table th:case="true" class="full-width responsive-table mdl-data-table mdl-js-data-table">
         <thead>
-        <th>REPO NAME</th>
-        <th>SSH</th>
-        <th>LAST UPDATE</th>
+        <th class="responsive-cell mdl-data-table__cell--non-numeric">REPO NAME</th>
+        <th class="disappear-on-small mdl-data-table__cell--non-numeric">SSH</th>
+        <th class="responsive-cell mdl-data-table__cell--non-numeric">LAST UPDATE</th>
         </thead>
         <tbody>
         <tr th:each="repo:${repo_list}">
-            <td><a th:href="${repo.html_url}"><p th:text="${repo.name}"></p></a></td>
-            <td><a th:href="${repo.html_url}"><p th:text="${repo.ssh_url}"></p></a></td>
-            <td><a th:href="${repo.html_url}"><p th:text="${repo.updated_at}"></p></a></td>
+            <td class="responsive-cell mdl-data-table__cell--non-numeric"><a th:href="${repo.html_url}"><p th:text="${repo.name}"></p></a></td>
+            <td class="disappear-on-small mdl-data-table__cell--non-numeric"><a th:href="${repo.html_url}"><p th:text="${repo.ssh_url}"></p></a></td>
+            <td class="responsive-cell mdl-data-table__cell--non-numeric"><a th:href="${repo.html_url}"><p th:text="${repo.updated_at}"></p></a></td>
         </tr>
         </tbody>
 
